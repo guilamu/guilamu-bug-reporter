@@ -275,24 +275,39 @@
         showSuccess: function (data) {
             var $success = $('.guilamu-bug-reporter-success');
 
-            // Add AI response if available
+            // Update progress bar to show success message
+            $('.guilamu-bug-reporter-progress-fill').css('width', '100%');
+            $('.guilamu-bug-reporter-progress-text').text(guilamuBugReporter.i18n.success);
+
+            // Add AI response if available (with proper formatting)
             if (data.ai_response) {
-                $success.find('.guilamu-bug-reporter-ai-response p').text(data.ai_response);
+                // Replace \n with actual line breaks for display
+                var formattedResponse = data.ai_response.replace(/\\n/g, '\n');
+                $success.find('.guilamu-bug-reporter-ai-response p').text(formattedResponse);
                 $success.find('.guilamu-bug-reporter-ai-response').show();
             } else {
                 $success.find('.guilamu-bug-reporter-ai-response').hide();
             }
 
-            // Set issue link
+            // Show success content
+            $success.addClass('active');
+
+            // Update footer: hide nav buttons, show issue link and close button
+            $('.guilamu-bug-reporter-footer').show();
+            $('.guilamu-bug-reporter-back, .guilamu-bug-reporter-next, .guilamu-bug-reporter-submit').hide();
+
+            // Set issue link and show it
             if (data.issue_url) {
-                $success.find('.guilamu-bug-reporter-issue-link a').attr('href', data.issue_url);
+                $('.guilamu-bug-reporter-issue-link')
+                    .attr('href', data.issue_url)
+                    .show();
             }
 
-            $success.addClass('active');
-            $('.guilamu-bug-reporter-footer').show();
-            $('.guilamu-bug-reporter-footer .button').hide();
-            $('<button type="button" class="button button-primary guilamu-bug-reporter-close">' +
-                guilamuBugReporter.i18n.close + '</button>').appendTo('.guilamu-bug-reporter-footer');
+            // Add close button to footer right
+            $('.guilamu-bug-reporter-footer-right').append(
+                '<button type="button" class="button button-primary guilamu-bug-reporter-close">' +
+                guilamuBugReporter.i18n.close + '</button>'
+            );
         }
     };
 

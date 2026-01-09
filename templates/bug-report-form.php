@@ -39,7 +39,7 @@ if (!defined('ABSPATH')) {
 
             <!-- Success State -->
             <div class="guilamu-bug-reporter-success">
-                <div class="guilamu-bug-reporter-success-icon">✅</div>
+
                 <h3>
                     <?php esc_html_e('Report Submitted Successfully!', 'guilamu-bug-reporter'); ?>
                 </h3>
@@ -51,11 +51,7 @@ if (!defined('ABSPATH')) {
                     <p></p>
                 </div>
 
-                <div class="guilamu-bug-reporter-issue-link">
-                    <a href="#" target="_blank">
-                        <?php esc_html_e('View Issue on GitHub →', 'guilamu-bug-reporter'); ?>
-                    </a>
-                </div>
+
             </div>
 
             <!-- Form -->
@@ -132,7 +128,8 @@ if (!defined('ABSPATH')) {
                         </p>
 
                         <div class="guilamu-bug-reporter-field">
-                            <textarea name="steps" rows="5" required placeholder="<?php esc_attr_e("1. Go to Form Settings\n2. Change the field label\n3. Click 'Save'\n4. Page refreshes but changes are lost", 'guilamu-bug-reporter'); ?>"></textarea>
+                            <textarea name="steps" rows="5" required
+                                placeholder="<?php esc_attr_e("1. Go to Form Settings\n2. Change the field label\n3. Click 'Save'\n4. Page refreshes but changes are lost", 'guilamu-bug-reporter'); ?>"></textarea>
                         </div>
                     </div>
 
@@ -207,15 +204,22 @@ if (!defined('ABSPATH')) {
         </div>
 
         <div class="guilamu-bug-reporter-footer">
-            <button type="button" class="button guilamu-bug-reporter-back" style="display: none;">
-                <?php esc_html_e('← Back', 'guilamu-bug-reporter'); ?>
-            </button>
-            <button type="button" class="button button-primary guilamu-bug-reporter-next" disabled>
-                <?php esc_html_e('Continue →', 'guilamu-bug-reporter'); ?>
-            </button>
-            <button type="button" class="button button-primary guilamu-bug-reporter-submit" style="display: none;">
-                <?php esc_html_e('Submit Report', 'guilamu-bug-reporter'); ?>
-            </button>
+            <div class="guilamu-bug-reporter-footer-left">
+                <button type="button" class="button guilamu-bug-reporter-back" style="display: none;">
+                    <?php esc_html_e('← Back', 'guilamu-bug-reporter'); ?>
+                </button>
+            </div>
+            <div class="guilamu-bug-reporter-footer-right">
+                <a href="#" target="_blank" class="guilamu-bug-reporter-issue-link" style="display: none;">
+                    <?php esc_html_e('View Issue on GitHub →', 'guilamu-bug-reporter'); ?>
+                </a>
+                <button type="button" class="button button-primary guilamu-bug-reporter-next" disabled>
+                    <?php esc_html_e('Continue →', 'guilamu-bug-reporter'); ?>
+                </button>
+                <button type="button" class="button button-primary guilamu-bug-reporter-submit" style="display: none;">
+                    <?php esc_html_e('Submit Report', 'guilamu-bug-reporter'); ?>
+                </button>
+            </div>
         </div>
     </div>
 </div>

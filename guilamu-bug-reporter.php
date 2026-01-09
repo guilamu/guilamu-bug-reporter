@@ -3,7 +3,7 @@
  * Plugin Name: Guilamu Bug Reporter
  * Plugin URI: https://github.com/guilamu/guilamu-bug-reporter
  * Description: Unified bug reporting for all Guilamu plugins with AI-powered instant responses.
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: Guilamu
  * Author URI: https://github.com/guilamu
  * Text Domain: guilamu-bug-reporter
@@ -19,7 +19,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Plugin constants
-define('GUILAMU_BUG_REPORTER_VERSION', '1.1.0');
+define('GUILAMU_BUG_REPORTER_VERSION', '1.1.1');
 define('GUILAMU_BUG_REPORTER_PATH', plugin_dir_path(__FILE__));
 define('GUILAMU_BUG_REPORTER_URL', plugin_dir_url(__FILE__));
 define('GUILAMU_BUG_REPORTER_BASENAME', plugin_basename(__FILE__));
