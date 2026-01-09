@@ -1,7 +1,7 @@
 /**
  * Guilamu Bug Reporter JavaScript
  */
-(function($) {
+(function ($) {
     'use strict';
 
     var BugReporter = {
@@ -10,17 +10,17 @@
         formData: {},
         screenshotUrl: '',
 
-        init: function() {
+        init: function () {
             this.bindEvents();
         },
 
-        bindEvents: function() {
+        bindEvents: function () {
             // Open modal
             $(document).on('click', '.guilamu-bug-report-btn', this.openModal.bind(this));
 
             // Close modal
             $(document).on('click', '.guilamu-bug-reporter-close', this.closeModal.bind(this));
-            $(document).on('click', '.guilamu-bug-reporter-modal', function(e) {
+            $(document).on('click', '.guilamu-bug-reporter-modal', function (e) {
                 if ($(e.target).hasClass('guilamu-bug-reporter-modal')) {
                     BugReporter.closeModal();
                 }
@@ -39,17 +39,26 @@
             $(document).on('change', '#guilamu-screenshot-input', this.handleUpload.bind(this));
 
             // Escape key
-            $(document).on('keydown', function(e) {
+            $(document).on('keydown', function (e) {
                 if (e.key === 'Escape') {
                     BugReporter.closeModal();
                 }
             });
         },
 
-        openModal: function(e) {
+        openModal: function (e) {
             e.preventDefault();
+
+            // Check if setup is complete
+            if (!guilamuBugReporter.isSetupComplete) {
+                if (confirm(guilamuBugReporter.i18n.setupRequired)) {
+                    window.location.href = guilamuBugReporter.settingsUrl;
+                }
+                return;
+            }
+
             var $btn = $(e.currentTarget);
-            
+
             this.formData = {
                 plugin_slug: $btn.data('plugin-slug'),
                 plugin_name: $btn.data('plugin-name')
@@ -65,12 +74,12 @@
             $('body').css('overflow', 'hidden');
         },
 
-        closeModal: function() {
+        closeModal: function () {
             $('.guilamu-bug-reporter-modal').removeClass('active');
             $('body').css('overflow', '');
         },
 
-        resetForm: function() {
+        resetForm: function () {
             $('.guilamu-bug-reporter-form')[0].reset();
             $('.guilamu-bug-reporter-step').removeClass('active');
             $('.guilamu-bug-reporter-loading, .guilamu-bug-reporter-success').removeClass('active');
@@ -80,7 +89,7 @@
             $('.guilamu-bug-reporter-next').prop('disabled', true);
         },
 
-        showStep: function(step) {
+        showStep: function (step) {
             $('.guilamu-bug-reporter-step').removeClass('active');
             $('.guilamu-bug-reporter-step[data-step="' + step + '"]').addClass('active');
 
@@ -106,16 +115,16 @@
             }
         },
 
-        updateProgress: function() {
+        updateProgress: function () {
             var percent = ((this.currentStep + 1) / this.totalSteps) * 100;
             $('.guilamu-bug-reporter-progress-fill').css('width', percent + '%');
             $('.guilamu-bug-reporter-progress-text').text(
-                guilamuBugReporter.i18n['step_' + (this.currentStep + 1) + '_title'] || 
+                guilamuBugReporter.i18n['step_' + (this.currentStep + 1) + '_title'] ||
                 'Step ' + (this.currentStep + 1) + ' of ' + this.totalSteps
             );
         },
 
-        nextStep: function() {
+        nextStep: function () {
             if (!this.validateCurrentStep()) {
                 return;
             }
@@ -126,18 +135,18 @@
             this.updateProgress();
         },
 
-        prevStep: function() {
+        prevStep: function () {
             this.currentStep--;
             this.showStep(this.currentStep);
             this.updateProgress();
         },
 
-        validateCurrentStep: function() {
+        validateCurrentStep: function () {
             var $step = $('.guilamu-bug-reporter-step[data-step="' + this.currentStep + '"]');
             var valid = true;
 
             // Check required fields
-            $step.find('[required]').each(function() {
+            $step.find('[required]').each(function () {
                 if (!$(this).val().trim()) {
                     $(this).addClass('error');
                     valid = false;
@@ -154,13 +163,13 @@
             return valid;
         },
 
-        saveCurrentStepData: function() {
+        saveCurrentStepData: function () {
             var $step = $('.guilamu-bug-reporter-step[data-step="' + this.currentStep + '"]');
 
-            $step.find('input, textarea, select').each(function() {
+            $step.find('input, textarea, select').each(function () {
                 var $field = $(this);
                 var name = $field.attr('name');
-                
+
                 if (name) {
                     if ($field.attr('type') === 'radio') {
                         if ($field.is(':checked')) {
@@ -173,17 +182,17 @@
             });
         },
 
-        toggleNextButton: function() {
+        toggleNextButton: function () {
             var checked = $('#guilamu-privacy-acknowledge').is(':checked');
             $('.guilamu-bug-reporter-next').prop('disabled', !checked);
         },
 
-        triggerUpload: function(e) {
+        triggerUpload: function (e) {
             e.preventDefault();
             $('#guilamu-screenshot-input').trigger('click');
         },
 
-        handleUpload: function(e) {
+        handleUpload: function (e) {
             var file = e.target.files[0];
             if (!file) return;
 
@@ -213,7 +222,7 @@
                 data: formData,
                 processData: false,
                 contentType: false,
-                success: function(response) {
+                success: function (response) {
                     $upload.removeClass('uploading');
                     if (response.success) {
                         BugReporter.screenshotUrl = response.data.url;
@@ -224,14 +233,14 @@
                         alert(response.data || guilamuBugReporter.i18n.error);
                     }
                 },
-                error: function() {
+                error: function () {
                     $upload.removeClass('uploading');
                     alert(guilamuBugReporter.i18n.error);
                 }
             });
         },
 
-        submitReport: function() {
+        submitReport: function () {
             this.saveCurrentStepData();
 
             // Show loading
@@ -245,7 +254,7 @@
                 screenshot_url: this.screenshotUrl
             });
 
-            $.post(guilamuBugReporter.ajaxUrl, data, function(response) {
+            $.post(guilamuBugReporter.ajaxUrl, data, function (response) {
                 $('.guilamu-bug-reporter-loading').removeClass('active');
 
                 if (response.success) {
@@ -255,7 +264,7 @@
                     $('.guilamu-bug-reporter-form-container').show();
                     $('.guilamu-bug-reporter-footer').show();
                 }
-            }).fail(function() {
+            }).fail(function () {
                 $('.guilamu-bug-reporter-loading').removeClass('active');
                 alert(guilamuBugReporter.i18n.error);
                 $('.guilamu-bug-reporter-form-container').show();
@@ -263,9 +272,9 @@
             });
         },
 
-        showSuccess: function(data) {
+        showSuccess: function (data) {
             var $success = $('.guilamu-bug-reporter-success');
-            
+
             // Add AI response if available
             if (data.ai_response) {
                 $success.find('.guilamu-bug-reporter-ai-response p').text(data.ai_response);
@@ -282,12 +291,12 @@
             $success.addClass('active');
             $('.guilamu-bug-reporter-footer').show();
             $('.guilamu-bug-reporter-footer .button').hide();
-            $('<button type="button" class="button button-primary guilamu-bug-reporter-close">' + 
+            $('<button type="button" class="button button-primary guilamu-bug-reporter-close">' +
                 guilamuBugReporter.i18n.close + '</button>').appendTo('.guilamu-bug-reporter-footer');
         }
     };
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         BugReporter.init();
     });
 

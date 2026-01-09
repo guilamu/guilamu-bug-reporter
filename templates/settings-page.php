@@ -70,6 +70,7 @@ $registered = Guilamu_Bug_Reporter::get_registered_plugins();
                         </th>
                         <td>
                             <input type="password" name="poe_api_key" id="poe_api_key" class="regular-text" value=""
+                                autocomplete="new-password"
                                 placeholder="<?php esc_attr_e('Paste your API key here', 'guilamu-bug-reporter'); ?>">
                             <span id="poe_key_status"></span>
                         </td>

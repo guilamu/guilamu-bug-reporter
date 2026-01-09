@@ -142,10 +142,13 @@ class Guilamu_Bug_Reporter
             array(
                 'ajaxUrl' => admin_url('admin-ajax.php'),
                 'nonce' => wp_create_nonce('guilamu_bug_reporter'),
+                'settingsUrl' => admin_url('options-general.php?page=guilamu-bug-reporter'),
+                'isSetupComplete' => Guilamu_Bug_Reporter_Settings::is_setup_complete(),
                 'i18n' => array(
                     'loading' => __('Processing...', 'guilamu-bug-reporter'),
                     'success' => __('Report submitted successfully!', 'guilamu-bug-reporter'),
                     'error' => __('An error occurred. Please try again.', 'guilamu-bug-reporter'),
+                    'setupRequired' => __('Please configure your POE API key first to enable AI-powered bug reporting.', 'guilamu-bug-reporter'),
                     'step_1_title' => __('Privacy & Data Disclosure', 'guilamu-bug-reporter'),
                     'step_2_title' => __('Describe the Issue', 'guilamu-bug-reporter'),
                     'step_3_title' => __('Steps to Reproduce', 'guilamu-bug-reporter'),
