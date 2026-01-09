@@ -108,6 +108,10 @@ Yes! Any plugin can register with Bug Reporter using the `Guilamu_Bug_Reporter::
 
 ## Changelog
 
+### 1.1.3
+- **Improved:** Removed extra padding from success container
+- **Improved:** Added French translations for placeholder texts
+
 ### 1.1.2
 - **Improved:** Removed green success heading for cleaner UI
 - **Improved:** AI response takes more space with reduced padding
