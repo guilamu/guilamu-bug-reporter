@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Guilamu Bug Reporter 1.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/guilamu/guilamu-bug-reporter\n"
 "POT-Creation-Date: 2024-01-09T00:00:00+00:00\n"
-"PO-Revision-Date: 2026-01-09 10:53+0100\n"
+"PO-Revision-Date: 2026-01-09 13:52+0100\n"
 "Last-Translator: Guilamu <contact@guilamu.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr_FR\n"
@@ -224,10 +224,54 @@ msgid "AI Response"
 msgstr "Réponse de l'IA"
 
 msgid "View Issue on GitHub →"
-msgstr "Voir le ticket sur GitHub →"
+msgstr "Voir le ticket sur GitHub"
+
+msgid "View Issue on GitHub"
+msgstr "Voir le ticket sur GitHub"
 
 msgid "← Back"
 msgstr "← Retour"
 
 msgid "Continue →"
 msgstr "Continuer →"
+
+msgid "Example: When I try to save the form, the page refreshes but the changes are not saved. I expected my changes to be saved and see a success message."
+msgstr "Exemple : Quand j'essaie d'enregistrer le formulaire, la page se rafraîchit mais les modifications ne sont pas sauvegardées. Je m'attendais à ce que mes modifications soient enregistrées et à voir un message de confirmation."
+
+msgid ""
+"1. Go to Form Settings\n"
+"2. Change the field label\n"
+"3. Click 'Save'\n"
+"4. Page refreshes but changes are lost"
+msgstr ""
+"1. Aller dans les paramètres du formulaire\n"
+"2. Modifier le libellé du champ\n"
+"3. Cliquer sur « Enregistrer »\n"
+"4. La page se rafraîchit mais les modifications sont perdues"
+
+msgid "your@email.com"
+msgstr "votre@email.com"
+
+msgid "Permission denied."
+msgstr "Permission refusée."
+
+msgid "Please fill in all required fields."
+msgstr "Veuillez remplir tous les champs obligatoires."
+
+msgid "Invalid plugin."
+msgstr "Extension invalide."
+
+msgid "Your bug report has been submitted successfully!"
+msgstr "Votre rapport de bug a été envoyé avec succès !"
+
+msgid "No file uploaded."
+msgstr "Aucun fichier téléchargé."
+
+msgid "Invalid file type. Please upload an image."
+msgstr "Type de fichier invalide. Veuillez télécharger une image."
+
+msgid "File too large. Maximum size is 5MB."
+msgstr "Fichier trop volumineux. Taille maximum : 5 Mo."
+
+msgid "POE setup is required before reporting bugs. Would you like to configure it now?"
+msgstr "La configuration POE est requise avant de signaler des bugs. Voulez-vous la configurer maintenant ?"
