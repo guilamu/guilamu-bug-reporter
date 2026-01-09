@@ -3,7 +3,7 @@
  * Plugin Name: Guilamu Bug Reporter
  * Plugin URI: https://github.com/guilamu/guilamu-bug-reporter
  * Description: Unified bug reporting for all Guilamu plugins with AI-powered instant responses.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: Guilamu
  * Author URI: https://github.com/guilamu
  * Text Domain: guilamu-bug-reporter
@@ -14,26 +14,26 @@
  * License: GPL-2.0-or-later
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
     exit;
 }
 
 // Plugin constants
-define( 'GUILAMU_BUG_REPORTER_VERSION', '1.0.0' );
-define( 'GUILAMU_BUG_REPORTER_PATH', plugin_dir_path( __FILE__ ) );
-define( 'GUILAMU_BUG_REPORTER_URL', plugin_dir_url( __FILE__ ) );
-define( 'GUILAMU_BUG_REPORTER_BASENAME', plugin_basename( __FILE__ ) );
+define('GUILAMU_BUG_REPORTER_VERSION', '1.1.0');
+define('GUILAMU_BUG_REPORTER_PATH', plugin_dir_path(__FILE__));
+define('GUILAMU_BUG_REPORTER_URL', plugin_dir_url(__FILE__));
+define('GUILAMU_BUG_REPORTER_BASENAME', plugin_basename(__FILE__));
 
 /**
  * Load plugin text domain for translations.
  */
-add_action( 'init', function() {
+add_action('init', function () {
     load_plugin_textdomain(
         'guilamu-bug-reporter',
         false,
-        dirname( GUILAMU_BUG_REPORTER_BASENAME ) . '/languages'
+        dirname(GUILAMU_BUG_REPORTER_BASENAME) . '/languages'
     );
-} );
+});
 
 // Include required files
 require_once GUILAMU_BUG_REPORTER_PATH . 'includes/class-github-updater.php';
