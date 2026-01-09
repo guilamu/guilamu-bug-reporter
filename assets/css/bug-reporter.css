@@ -1,0 +1,378 @@
+/**
+ * Guilamu Bug Reporter Styles
+ */
+
+/* Modal Overlay */
+.guilamu-bug-reporter-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 100000;
+    align-items: center;
+    justify-content: center;
+}
+
+.guilamu-bug-reporter-modal.active {
+    display: flex;
+}
+
+/* Modal Content */
+.guilamu-bug-reporter-modal-content {
+    background: #fff;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.guilamu-bug-reporter-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #dcdcde;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.guilamu-bug-reporter-header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.guilamu-bug-reporter-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #787c82;
+    padding: 0;
+    line-height: 1;
+}
+
+.guilamu-bug-reporter-close:hover {
+    color: #1d2327;
+}
+
+/* Progress Bar */
+.guilamu-bug-reporter-progress {
+    padding: 16px 24px;
+    background: #f6f7f7;
+    border-bottom: 1px solid #dcdcde;
+}
+
+.guilamu-bug-reporter-progress-bar {
+    height: 4px;
+    background: #dcdcde;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.guilamu-bug-reporter-progress-fill {
+    height: 100%;
+    background: #2271b1;
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+.guilamu-bug-reporter-progress-text {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #646970;
+}
+
+/* Form Body */
+.guilamu-bug-reporter-body {
+    padding: 24px;
+}
+
+/* Steps */
+.guilamu-bug-reporter-step {
+    display: none;
+}
+
+.guilamu-bug-reporter-step.active {
+    display: block;
+}
+
+.guilamu-bug-reporter-step h3 {
+    margin: 0 0 16px 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.guilamu-bug-reporter-step p {
+    margin: 0 0 16px 0;
+    color: #646970;
+}
+
+/* Form Fields */
+.guilamu-bug-reporter-field {
+    margin-bottom: 20px;
+}
+
+.guilamu-bug-reporter-field label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.guilamu-bug-reporter-field textarea,
+.guilamu-bug-reporter-field input[type="text"],
+.guilamu-bug-reporter-field input[type="email"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #8c8f94;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.guilamu-bug-reporter-field textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.guilamu-bug-reporter-field textarea:focus,
+.guilamu-bug-reporter-field input:focus {
+    border-color: #2271b1;
+    box-shadow: 0 0 0 1px #2271b1;
+    outline: none;
+}
+
+/* Severity Options */
+.guilamu-bug-reporter-severity {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.guilamu-bug-reporter-severity label {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    border: 2px solid #dcdcde;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: normal;
+}
+
+.guilamu-bug-reporter-severity input {
+    margin-right: 8px;
+}
+
+.guilamu-bug-reporter-severity label:hover {
+    border-color: #2271b1;
+}
+
+.guilamu-bug-reporter-severity input:checked + span {
+    font-weight: 600;
+}
+
+.guilamu-bug-reporter-severity label:has(input:checked) {
+    border-color: #2271b1;
+    background: #f0f6fc;
+}
+
+/* Privacy Notice */
+.guilamu-bug-reporter-privacy {
+    background: #f0f6fc;
+    border-left: 4px solid #2271b1;
+    padding: 16px;
+    margin-bottom: 20px;
+    border-radius: 0 4px 4px 0;
+}
+
+.guilamu-bug-reporter-privacy h4 {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+}
+
+.guilamu-bug-reporter-privacy ul {
+    margin: 0 0 12px 20px;
+    padding: 0;
+}
+
+.guilamu-bug-reporter-privacy li {
+    margin-bottom: 4px;
+}
+
+.guilamu-bug-reporter-acknowledge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.guilamu-bug-reporter-acknowledge input {
+    width: 18px;
+    height: 18px;
+}
+
+/* Screenshot Upload */
+.guilamu-bug-reporter-upload {
+    border: 2px dashed #c3c4c7;
+    border-radius: 6px;
+    padding: 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.guilamu-bug-reporter-upload:hover {
+    border-color: #2271b1;
+    background: #f0f6fc;
+}
+
+.guilamu-bug-reporter-upload.has-file {
+    border-style: solid;
+    border-color: #00a32a;
+    background: #edfaef;
+}
+
+.guilamu-bug-reporter-upload-preview {
+    max-width: 200px;
+    max-height: 150px;
+    margin-top: 12px;
+    border-radius: 4px;
+}
+
+/* Footer Buttons */
+.guilamu-bug-reporter-footer {
+    padding: 16px 24px;
+    border-top: 1px solid #dcdcde;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.guilamu-bug-reporter-footer .button {
+    min-width: 100px;
+}
+
+/* Loading State */
+.guilamu-bug-reporter-loading {
+    display: none;
+    text-align: center;
+    padding: 40px;
+}
+
+.guilamu-bug-reporter-loading.active {
+    display: block;
+}
+
+.guilamu-bug-reporter-spinner {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 3px solid #dcdcde;
+    border-top-color: #2271b1;
+    border-radius: 50%;
+    animation: guilamu-spin 1s linear infinite;
+}
+
+@keyframes guilamu-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Success State */
+.guilamu-bug-reporter-success {
+    display: none;
+    text-align: center;
+    padding: 24px;
+}
+
+.guilamu-bug-reporter-success.active {
+    display: block;
+}
+
+.guilamu-bug-reporter-success-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.guilamu-bug-reporter-success h3 {
+    color: #00a32a;
+    margin: 0 0 16px 0;
+}
+
+.guilamu-bug-reporter-ai-response {
+    background: #f6f7f7;
+    border-left: 4px solid #2271b1;
+    padding: 16px;
+    margin: 20px 0;
+    text-align: left;
+    border-radius: 0 4px 4px 0;
+}
+
+.guilamu-bug-reporter-ai-response h4 {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+}
+
+.guilamu-bug-reporter-issue-link {
+    margin-top: 20px;
+}
+
+.guilamu-bug-reporter-issue-link a {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #2271b1;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.guilamu-bug-reporter-issue-link a:hover {
+    background: #135e96;
+}
+
+/* Settings Page */
+.guilamu-bug-reporter-settings-wrap {
+    max-width: 700px;
+}
+
+.guilamu-bug-reporter-setup-wizard {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 8px;
+    padding: 32px;
+    margin-top: 20px;
+}
+
+.guilamu-bug-reporter-setup-wizard h2 {
+    margin: 0 0 8px 0;
+}
+
+.guilamu-bug-reporter-setup-wizard .description {
+    margin-bottom: 24px;
+    color: #646970;
+}
+
+.guilamu-bug-reporter-setup-wizard .highlight {
+    background: #fcf9e8;
+    border: 1px solid #dba617;
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.guilamu-bug-reporter-setup-links {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.guilamu-bug-reporter-setup-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
