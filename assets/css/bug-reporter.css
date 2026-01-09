@@ -295,7 +295,6 @@
 .guilamu-bug-reporter-success {
     display: none;
     text-align: left;
-    padding: 12px;
 }
 
 .guilamu-bug-reporter-success.active {
