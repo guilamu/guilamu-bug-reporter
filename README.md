@@ -11,7 +11,7 @@ Unified bug reporting for WordPress plugins with AI-powered instant responses an
 ## Easy Integration
 - Register any plugin with a single function call
 - Add "Report a Bug" link to plugin pages
-- Works with Gravity Forms and any WordPress plugin
+- Works with Gravity Forms and any WordPress plugin on [guilamu's GitHub](https://github.com/guilamu)
 - Supports multiple plugins simultaneously
 
 ## Key Features
