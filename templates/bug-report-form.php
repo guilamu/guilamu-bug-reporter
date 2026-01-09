@@ -40,9 +40,7 @@ if (!defined('ABSPATH')) {
             <!-- Success State -->
             <div class="guilamu-bug-reporter-success">
 
-                <h3>
-                    <?php esc_html_e('Report Submitted Successfully!', 'guilamu-bug-reporter'); ?>
-                </h3>
+
 
                 <div class="guilamu-bug-reporter-ai-response" style="display: none;">
                     <h4>🤖
@@ -210,8 +208,9 @@ if (!defined('ABSPATH')) {
                 </button>
             </div>
             <div class="guilamu-bug-reporter-footer-right">
-                <a href="#" target="_blank" class="guilamu-bug-reporter-issue-link" style="display: none;">
-                    <?php esc_html_e('View Issue on GitHub →', 'guilamu-bug-reporter'); ?>
+                <a href="#" target="_blank" class="button button-primary guilamu-bug-reporter-issue-link"
+                    style="display: none;">
+                    <?php esc_html_e('View Issue on GitHub', 'guilamu-bug-reporter'); ?>
                 </a>
                 <button type="button" class="button button-primary guilamu-bug-reporter-next" disabled>
                     <?php esc_html_e('Continue →', 'guilamu-bug-reporter'); ?>

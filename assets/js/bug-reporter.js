@@ -303,8 +303,8 @@
                     .show();
             }
 
-            // Add close button to footer right
-            $('.guilamu-bug-reporter-footer-right').append(
+            // Add close button to footer left
+            $('.guilamu-bug-reporter-footer-left').append(
                 '<button type="button" class="button button-primary guilamu-bug-reporter-close">' +
                 guilamuBugReporter.i18n.close + '</button>'
             );

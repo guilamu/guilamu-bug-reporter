@@ -295,23 +295,18 @@
 .guilamu-bug-reporter-success {
     display: none;
     text-align: left;
-    padding: 24px;
+    padding: 12px;
 }
 
 .guilamu-bug-reporter-success.active {
     display: block;
 }
 
-.guilamu-bug-reporter-success h3 {
-    color: #00a32a;
-    margin: 0 0 16px 0;
-}
-
 .guilamu-bug-reporter-ai-response {
     background: #f6f7f7;
     border-left: 4px solid #2271b1;
-    padding: 16px;
-    margin: 20px 0;
+    padding: 12px;
+    margin: 0;
     text-align: left;
     border-radius: 0 4px 4px 0;
 }
@@ -325,15 +320,6 @@
     white-space: pre-wrap;
     margin: 0;
     line-height: 1.6;
-}
-
-.guilamu-bug-reporter-issue-link {
-    text-decoration: none;
-    color: #2271b1;
-}
-
-.guilamu-bug-reporter-issue-link:hover {
-    text-decoration: underline;
 }
 
 /* Settings Page */
