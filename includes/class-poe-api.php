@@ -79,32 +79,54 @@ class Guilamu_Bug_Reporter_POE_API
     /**
      * Get AI response for a bug report.
      *
-     * @param string $api_key   POE API key.
-     * @param string $model     Model ID.
-     * @param array  $form_data Bug report form data.
+     * @param string $api_key     POE API key.
+     * @param string $model       Model ID.
+     * @param array  $form_data   Bug report form data.
+     * @param string $system_info System info as formatted string.
      * @return string|null AI response or null on failure.
      */
-    public static function get_bug_response(string $api_key, string $model, array $form_data): ?string
+    public static function get_bug_response(string $api_key, string $model, array $form_data, string $system_info = ''): ?string
     {
         if (empty($api_key) || empty($model)) {
             return null;
         }
 
-        $system_prompt = "You are a helpful WordPress plugin support assistant. A user has submitted a bug report. Provide:
-1. Acknowledgment that their report was received
-2. Any immediate troubleshooting steps they can try
-3. Common causes for this type of issue
-4. Reassurance that a developer will review
+        $system_prompt = "You are a helpful WordPress plugin support assistant. A user has submitted a bug report with their complete environment information.
 
-Keep response friendly, concise (max 200 words), helpful.
-Do NOT promise fixes or timelines.";
+IMPORTANT: Do NOT ask for any additional information as we already have all the technical details below.
+
+Provide a helpful response that includes:
+1. Brief acknowledgment (1 sentence)
+2. 2-3 immediate troubleshooting steps they can try based on their specific environment
+3. Reassurance that a developer will review the issue
+
+Keep your response:
+- Concise (max 150 words)
+- Friendly and professional
+- In plain text without markdown formatting
+- Do NOT use bullet points or numbered lists with special characters
+- Use simple line breaks between paragraphs
+- Do NOT promise any fixes or timelines";
 
         $user_prompt = sprintf(
-            "Bug Report:\n\nPlugin: %s\nDescription: %s\nSteps to Reproduce: %s\nSeverity: %s",
+            "Bug Report for: %s (v%s)
+
+ISSUE DESCRIPTION:
+%s
+
+STEPS TO REPRODUCE:
+%s
+
+SEVERITY: %s
+
+ENVIRONMENT INFORMATION:
+%s",
             $form_data['plugin_name'] ?? '',
+            $form_data['plugin_version'] ?? '',
             $form_data['description'] ?? '',
             $form_data['steps'] ?? '',
-            $form_data['severity'] ?? ''
+            $form_data['severity'] ?? '',
+            $system_info
         );
 
         $response = wp_remote_post(

@@ -111,4 +111,25 @@ class Guilamu_Bug_Reporter_System_Info
 
         return $md;
     }
+
+    /**
+     * Format system info as plain text for AI prompt.
+     *
+     * @param array $info System information array.
+     * @return string Plain text format.
+     */
+    public static function format_for_prompt(array $info): string
+    {
+        $lines = array();
+
+        foreach ($info as $key => $value) {
+            // Truncate long values
+            if (strlen($value) > 150) {
+                $value = substr($value, 0, 150) . '...';
+            }
+            $lines[] = $key . ': ' . $value;
+        }
+
+        return implode("\n", $lines);
+    }
 }

@@ -132,7 +132,7 @@ $registered = Guilamu_Bug_Reporter::get_registered_plugins();
                             $('#model_loading').hide();
 
                             if (response.success) {
-                                $('#poe_key_status').html('<span style="color:green;">✓</span>');
+                                $('#poe_key_status').html('');
                                 var $select = $('#poe_model').empty();
 
                                 response.data.models.forEach(function (model) {

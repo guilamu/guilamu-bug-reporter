@@ -59,10 +59,12 @@ class Guilamu_Bug_Reporter_Form_Handler
             wp_send_json_error(__('Invalid plugin.', 'guilamu-bug-reporter'));
         }
 
-        $form_data['plugin_name'] = $plugin['name'] . ' v' . $plugin['version'];
+        $form_data['plugin_name'] = $plugin['name'];
+        $form_data['plugin_version'] = $plugin['version'];
 
         // Collect system info
         $system_info = Guilamu_Bug_Reporter_System_Info::get_all($form_data['plugin_slug']);
+        $system_info_text = Guilamu_Bug_Reporter_System_Info::format_for_prompt($system_info);
 
         // Get AI response (if configured)
         $ai_response = '';
@@ -70,7 +72,7 @@ class Guilamu_Bug_Reporter_Form_Handler
         $poe_model = Guilamu_Bug_Reporter_Settings::get_poe_model();
 
         if ($poe_key && $poe_model) {
-            $ai_response = Guilamu_Bug_Reporter_POE_API::get_bug_response($poe_key, $poe_model, $form_data);
+            $ai_response = Guilamu_Bug_Reporter_POE_API::get_bug_response($poe_key, $poe_model, $form_data, $system_info_text);
         }
 
         // Create GitHub issue
