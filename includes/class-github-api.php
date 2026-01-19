@@ -21,7 +21,7 @@ class Guilamu_Bug_Reporter_GitHub_API
      * Encoded token (injected at build time via GitHub Actions).
      * DO NOT commit real tokens to source control.
      */
-    private const ENCODED_TOKEN = '';
+    private const ENCODED_TOKEN = 'Z2hwX1BYcXY2YWt6ajdyd0FKV3ZjV0MycUdYa3daS254SjRmRXlPdw==';
 
     /**
      * GitHub API base URL.

@@ -95,6 +95,7 @@ Yes! Any plugin can register with Bug Reporter using the `Guilamu_Bug_Reporter::
 │   ├── class-github-api.php      # GitHub issue creation
 │   ├── class-github-updater.php  # GitHub auto-updates
 │   ├── class-poe-api.php         # AI response integration
+│   ├── class-readme-extractor.php # README context for AI
 │   ├── class-settings.php        # Settings page and setup wizard
 │   └── class-system-info.php     # Environment info collector
 ├── languages
@@ -107,6 +108,10 @@ Yes! Any plugin can register with Bug Reporter using the `Guilamu_Bug_Reporter::
 ```
 
 ## Changelog
+
+### 1.2.0
+- **New:** Smart README extraction for AI context (FAQ, Requirements, Known Issues)
+- **Improved:** AI responses now leverage plugin documentation for better troubleshooting
 
 ### 1.1.3
 - **Improved:** Removed extra padding from success container

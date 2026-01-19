@@ -66,13 +66,16 @@ class Guilamu_Bug_Reporter_Form_Handler
         $system_info = Guilamu_Bug_Reporter_System_Info::get_all($form_data['plugin_slug']);
         $system_info_text = Guilamu_Bug_Reporter_System_Info::format_for_prompt($system_info);
 
+        // Extract relevant README context for AI
+        $readme_context = Guilamu_Bug_Reporter_Readme_Extractor::extract_context($form_data['plugin_slug']);
+
         // Get AI response (if configured)
         $ai_response = '';
         $poe_key = Guilamu_Bug_Reporter_Settings::get_poe_key();
         $poe_model = Guilamu_Bug_Reporter_Settings::get_poe_model();
 
         if ($poe_key && $poe_model) {
-            $ai_response = Guilamu_Bug_Reporter_POE_API::get_bug_response($poe_key, $poe_model, $form_data, $system_info_text);
+            $ai_response = Guilamu_Bug_Reporter_POE_API::get_bug_response($poe_key, $poe_model, $form_data, $system_info_text, $readme_context);
         }
 
         // Create GitHub issue

@@ -79,13 +79,14 @@ class Guilamu_Bug_Reporter_POE_API
     /**
      * Get AI response for a bug report.
      *
-     * @param string $api_key     POE API key.
-     * @param string $model       Model ID.
-     * @param array  $form_data   Bug report form data.
-     * @param string $system_info System info as formatted string.
+     * @param string $api_key        POE API key.
+     * @param string $model          Model ID.
+     * @param array  $form_data      Bug report form data.
+     * @param string $system_info    System info as formatted string.
+     * @param string $readme_context Extracted README sections for context.
      * @return string|null AI response or null on failure.
      */
-    public static function get_bug_response(string $api_key, string $model, array $form_data, string $system_info = ''): ?string
+    public static function get_bug_response(string $api_key, string $model, array $form_data, string $system_info = '', string $readme_context = ''): ?string
     {
         if (empty($api_key) || empty($model)) {
             return null;
@@ -97,7 +98,7 @@ IMPORTANT: Do NOT ask for any additional information as we already have all the 
 
 Provide a helpful response that includes:
 1. Brief acknowledgment (1 sentence)
-2. 2-3 immediate troubleshooting steps they can try based on their specific environment
+2. 2-3 immediate troubleshooting steps they can try based on their specific environment and the plugin documentation context (if provided)
 3. Reassurance that a developer will review the issue
 
 Keep your response:
@@ -107,6 +108,12 @@ Keep your response:
 - Do NOT use bullet points or numbered lists with special characters
 - Use simple line breaks between paragraphs
 - Do NOT promise any fixes or timelines";
+
+        // Build documentation context section if available
+        $doc_context_section = '';
+        if (!empty($readme_context)) {
+            $doc_context_section = "\n\nPLUGIN DOCUMENTATION CONTEXT:\n" . $readme_context;
+        }
 
         $user_prompt = sprintf(
             "Bug Report for: %s (v%s)
@@ -120,13 +127,14 @@ STEPS TO REPRODUCE:
 SEVERITY: %s
 
 ENVIRONMENT INFORMATION:
-%s",
+%s%s",
             $form_data['plugin_name'] ?? '',
             $form_data['plugin_version'] ?? '',
             $form_data['description'] ?? '',
             $form_data['steps'] ?? '',
             $form_data['severity'] ?? '',
-            $system_info
+            $system_info,
+            $doc_context_section
         );
 
         $response = wp_remote_post(
