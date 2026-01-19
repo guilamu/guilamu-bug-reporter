@@ -109,6 +109,9 @@ Yes! Any plugin can register with Bug Reporter using the `Guilamu_Bug_Reporter::
 
 ## Changelog
 
+### 1.2.1
+- **Security:** Upgraded to fine-grained GitHub token restricted to guilamu repositories only
+
 ### 1.2.0
 - **New:** Smart README extraction for AI context (FAQ, Requirements, Known Issues)
 - **Improved:** AI responses now leverage plugin documentation for better troubleshooting
