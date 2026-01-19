@@ -24,8 +24,7 @@ jobs:
         run: |
           # Encode token for obfuscation (not encryption - token should have minimal permissions)
           ENCODED=$(echo -n "${{ secrets.GUILAMU_ISSUES_TOKEN }}" | base64)
-          sed -i "s|private const ENCODED_TOKEN = '';|private const ENCODED_TOKEN = '$ENCODED';|" \
-              includes/class-github-api.php
+          perl -i -pe "s/private const ENCODED_TOKEN = '';/private const ENCODED_TOKEN = '\$ENCODED';/" includes/class-github-api.php
 
       - name: Create plugin zip
         run: |
