@@ -3,10 +3,10 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Guilamu Bug Reporter 1.0.0\n"
+"Project-Id-Version: Guilamu Bug Reporter 1.3.0\n"
 "Report-Msgid-Bugs-To: https://github.com/guilamu/guilamu-bug-reporter\n"
-"POT-Creation-Date: 2024-01-09T00:00:00+00:00\n"
-"PO-Revision-Date: 2026-01-09 13:52+0100\n"
+"POT-Creation-Date: 2026-02-28T00:00:00+00:00\n"
+"PO-Revision-Date: 2026-02-28 20:51+0100\n"
 "Last-Translator: Guilamu <contact@guilamu.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr_FR\n"
@@ -16,8 +16,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.8\n"
 
-msgid "🐛 Report a Bug"
-msgstr "🐛 Signaler un bug"
+#. Plugin Name
+msgid " Report a Bug"
+msgstr " Signaler un bug"
 
 msgid "Processing..."
 msgstr "Traitement en cours..."
@@ -28,11 +29,17 @@ msgstr "Rapport envoyé avec succès !"
 msgid "An error occurred. Please try again."
 msgstr "Une erreur s'est produite. Veuillez réessayer."
 
+msgid "Please configure Bug Reporter settings first."
+msgstr "Veuillez d'abord configurer les paramètres du Bug Reporter."
+
 msgid "Privacy & Data Disclosure"
 msgstr "Confidentialité et données collectées"
 
-msgid "Describe the Issue"
-msgstr "Décrivez le problème"
+msgid "What Happened?"
+msgstr "Que s'est-il passé ?"
+
+msgid "Expected Behavior"
+msgstr "Comportement attendu"
 
 msgid "Steps to Reproduce"
 msgstr "Étapes pour reproduire"
@@ -64,14 +71,45 @@ msgstr "Guilamu Bug Reporter"
 msgid "Bug Reporter"
 msgstr "Signalement de bugs"
 
+#. translators: %s: settings page URL
+msgid "Guilamu Bug Reporter needs configuration. %s to get started."
+msgstr "Guilamu Bug Reporter nécessite une configuration. %s pour commencer."
+
 msgid "Click here"
 msgstr "Cliquez ici"
+
+msgid "Permission denied."
+msgstr "Permission refusée."
+
+msgid "API key is required."
+msgstr "La clé API est requise."
+
+msgid "Settings saved successfully."
+msgstr "Paramètres enregistrés avec succès."
+
+msgid "Setup complete. AI responses are disabled."
+msgstr "Configuration terminée. Les réponses IA sont désactivées."
 
 msgid "Welcome to Guilamu Bug Reporter!"
 msgstr "Bienvenue dans Guilamu Bug Reporter !"
 
-msgid "To provide instant AI-powered responses to bug reports, you need a POE API key."
-msgstr "Pour fournir des réponses instantanées par IA aux rapports de bugs, vous avez besoin d'une clé API POE."
+msgid "Bug reports will be submitted as GitHub Issues. You can optionally enable AI-powered instant responses."
+msgstr "Les rapports de bugs seront soumis en tant que tickets GitHub. Vous pouvez activer optionnellement les réponses instantanées par IA."
+
+msgid "AI-Powered Responses (Optional)"
+msgstr "Réponses par IA (Optionnel)"
+
+msgid "Enable AI to provide instant troubleshooting suggestions when users submit bug reports. Choose between POE or Google Gemini."
+msgstr "Activez l'IA pour fournir des suggestions de dépannage instantanées lorsque les utilisateurs soumettent des rapports de bugs. Choisissez entre POE ou Google Gemini."
+
+msgid "Choose an AI Provider"
+msgstr "Choisissez un fournisseur d'IA"
+
+msgid "Free tier available. Supports Claude, GPT, and more."
+msgstr "Niveau gratuit disponible. Supporte Claude, GPT, et plus."
+
+msgid "Free tier with generous limits. Fast and capable."
+msgstr "Niveau gratuit avec des limites généreuses. Rapide et performant."
 
 msgid "This takes less than 1 minute and is completely FREE!"
 msgstr "Cela prend moins d'1 minute et c'est entièrement GRATUIT !"
@@ -79,20 +117,20 @@ msgstr "Cela prend moins d'1 minute et c'est entièrement GRATUIT !"
 msgid "Go to poe.com and create a free account"
 msgstr "Allez sur poe.com et créez un compte gratuit"
 
-msgid "Navigate to: Settings → API"
-msgstr "Allez dans : Paramètres → API"
+msgid "Navigate to: Settings  API"
+msgstr "Allez dans : Paramètres  API"
 
 msgid "Click \"Generate API key\""
-msgstr "Cliquez sur « Générer une clé API »"
+msgstr "Cliquez sur  Générer une clé API "
 
 msgid "Copy and paste it below"
 msgstr "Copiez et collez-la ci-dessous"
 
-msgid "Create Free POE Account →"
-msgstr "Créer un compte POE gratuit →"
+msgid "Create Free POE Account "
+msgstr "Créer un compte POE gratuit "
 
-msgid "Get Your API Key →"
-msgstr "Obtenir votre clé API →"
+msgid "Get Your API Key "
+msgstr "Obtenir votre clé API "
 
 msgid "POE API Key"
 msgstr "Clé API POE"
@@ -109,11 +147,56 @@ msgstr "Entrez d'abord la clé API..."
 msgid "Auto-detected: Latest Claude-Sonnet"
 msgstr "Détection automatique : Dernier Claude-Sonnet"
 
-msgid "Complete Setup →"
-msgstr "Terminer la configuration →"
+msgid "Google Gemini offers a generous free tier  no credit card required!"
+msgstr "Google Gemini offre un niveau gratuit généreux  aucune carte bancaire requise !"
+
+msgid "Go to Google AI Studio"
+msgstr "Allez sur Google AI Studio"
+
+msgid "Sign in with your Google account"
+msgstr "Connectez-vous avec votre compte Google"
+
+msgid "Click \"Get API key\"  \"Create API key\""
+msgstr "Cliquez sur  Get API key    Create API key "
+
+msgid "Get Your Gemini API Key "
+msgstr "Obtenir votre clé API Gemini "
+
+msgid "Gemini API Key"
+msgstr "Clé API Gemini"
+
+msgid "Gemini 2.0 Flash is recommended for most use cases."
+msgstr "Gemini 2.0 Flash est recommandé pour la plupart des cas d'utilisation."
+
+msgid "Complete Setup with AI "
+msgstr "Terminer la configuration avec IA "
+
+msgid "Skip AI Setup "
+msgstr "Passer la configuration IA "
+
+msgid "You can always enable or change AI settings later from this page."
+msgstr "Vous pouvez toujours activer ou modifier les paramètres IA plus tard depuis cette page."
 
 msgid "Saving..."
 msgstr "Enregistrement..."
+
+msgid "AI Settings"
+msgstr "Paramètres IA"
+
+msgid "AI Responses"
+msgstr "Réponses IA"
+
+msgid "Enable AI-powered instant responses to bug reports"
+msgstr "Activer les réponses instantanées par IA aux rapports de bugs"
+
+msgid "AI Provider"
+msgstr "Fournisseur IA"
+
+msgid "Get API Key"
+msgstr "Obtenir la clé API"
+
+msgid "Model is auto-selected when you update your API key."
+msgstr "Le modèle est sélectionné automatiquement lorsque vous mettez à jour votre clé API."
 
 msgid "Registered Plugins"
 msgstr "Extensions enregistrées"
@@ -133,6 +216,13 @@ msgstr "Dépôt GitHub"
 msgid "Status"
 msgstr "Statut"
 
+#. translators: %s: provider name
+msgid "Enabled (%s)"
+msgstr "Activé (%s)"
+
+msgid "Disabled"
+msgstr "Désactivé"
+
 msgid "POE API"
 msgstr "API POE"
 
@@ -142,6 +232,9 @@ msgstr "Configuré"
 msgid "Not configured"
 msgstr "Non configuré"
 
+msgid "Gemini API"
+msgstr "API Gemini"
+
 msgid "GitHub API"
 msgstr "API GitHub"
 
@@ -150,6 +243,12 @@ msgstr "Pré-configuré"
 
 msgid "GitHub token is bundled with the plugin."
 msgstr "Le token GitHub est inclus dans l'extension."
+
+msgid "Submitting your report..."
+msgstr "Envoi de votre rapport..."
+
+msgid "AI Response"
+msgstr "Réponse de l'IA"
 
 msgid "What we collect:"
 msgstr "Ce que nous collectons :"
@@ -178,14 +277,37 @@ msgstr "Votre email ne sera PAS publié (stocké en privé uniquement pour le su
 msgid "I understand and wish to proceed"
 msgstr "Je comprends et souhaite continuer"
 
-msgid "What happened vs. what you expected?"
-msgstr "Que s'est-il passé vs. ce que vous attendiez ?"
+msgid "What happened?"
+msgstr "Que s'est-il passé ?"
 
-msgid "Describe the issue you encountered and what you expected to happen instead."
-msgstr "Décrivez le problème rencontré et ce que vous attendiez à la place."
+msgid "Describe the issue you encountered. Be as specific as possible."
+msgstr "Décrivez le problème rencontré. Soyez aussi précis que possible."
+
+msgid "Example: When I click Save, the page refreshes but my changes are not saved. No error message appears."
+msgstr "Exemple : Quand je clique sur Enregistrer, la page se rafraîchit mais mes modifications ne sont pas sauvegardées. Aucun message d'erreur n'apparaît."
+
+msgid "What did you expect to happen?"
+msgstr "Qu'attendiez-vous qu'il se passe ?"
+
+msgid "Describe the behavior you expected instead."
+msgstr "Décrivez le comportement que vous attendiez à la place."
+
+msgid "Example: I expected my changes to be saved and to see a success notification."
+msgstr "Exemple : Je m'attendais à ce que mes modifications soient enregistrées et à voir une notification de succès."
 
 msgid "List the exact steps to recreate this issue."
 msgstr "Listez les étapes exactes pour reproduire ce problème."
+
+msgid ""
+"1. Go to Form Settings\n"
+"2. Change the field label\n"
+"3. Click 'Save'\n"
+"4. Page refreshes but changes are lost"
+msgstr ""
+"1. Aller dans les paramètres du formulaire\n"
+"2. Modifier le libellé du champ\n"
+"3. Cliquer sur  Enregistrer \n"
+"4. La page se rafraîchit mais les modifications sont perdues"
 
 msgid "How severe is this issue?"
 msgstr "Quelle est la gravité de ce problème ?"
@@ -214,46 +336,17 @@ msgstr "Max 5 Mo. JPG, PNG, GIF ou WebP."
 msgid "We'll only use this to follow up if needed. It will NOT appear publicly."
 msgstr "Nous l'utiliserons uniquement pour un suivi si nécessaire. Il n'apparaîtra PAS publiquement."
 
-msgid "Submitting your report..."
-msgstr "Envoi de votre rapport..."
+msgid "your@email.com"
+msgstr "votre@email.com"
 
-msgid "Report Submitted Successfully!"
-msgstr "Rapport envoyé avec succès !"
-
-msgid "AI Response"
-msgstr "Réponse de l'IA"
-
-msgid "View Issue on GitHub →"
-msgstr "Voir le ticket sur GitHub"
+msgid " Back"
+msgstr " Retour"
 
 msgid "View Issue on GitHub"
 msgstr "Voir le ticket sur GitHub"
 
-msgid "← Back"
-msgstr "← Retour"
-
-msgid "Continue →"
-msgstr "Continuer →"
-
-msgid "Example: When I try to save the form, the page refreshes but the changes are not saved. I expected my changes to be saved and see a success message."
-msgstr "Exemple : Quand j'essaie d'enregistrer le formulaire, la page se rafraîchit mais les modifications ne sont pas sauvegardées. Je m'attendais à ce que mes modifications soient enregistrées et à voir un message de confirmation."
-
-msgid ""
-"1. Go to Form Settings\n"
-"2. Change the field label\n"
-"3. Click 'Save'\n"
-"4. Page refreshes but changes are lost"
-msgstr ""
-"1. Aller dans les paramètres du formulaire\n"
-"2. Modifier le libellé du champ\n"
-"3. Cliquer sur « Enregistrer »\n"
-"4. La page se rafraîchit mais les modifications sont perdues"
-
-msgid "your@email.com"
-msgstr "votre@email.com"
-
-msgid "Permission denied."
-msgstr "Permission refusée."
+msgid "Continue "
+msgstr "Continuer "
 
 msgid "Please fill in all required fields."
 msgstr "Veuillez remplir tous les champs obligatoires."
@@ -273,5 +366,17 @@ msgstr "Type de fichier invalide. Veuillez télécharger une image."
 msgid "File too large. Maximum size is 5MB."
 msgstr "Fichier trop volumineux. Taille maximum : 5 Mo."
 
-msgid "POE setup is required before reporting bugs. Would you like to configure it now?"
-msgstr "La configuration POE est requise avant de signaler des bugs. Voulez-vous la configurer maintenant ?"
+#. translators: %d: HTTP status code
+msgid "Gemini API error: %d"
+msgstr "Erreur API Gemini : %d"
+
+#. translators: %d: HTTP status code
+msgid "POE API error: %d"
+msgstr "Erreur API POE : %d"
+
+msgid "GitHub token is not configured."
+msgstr "Le token GitHub n'est pas configuré."
+
+#. translators: %d: HTTP status code
+msgid "GitHub API error: %d"
+msgstr "Erreur API GitHub : %d"

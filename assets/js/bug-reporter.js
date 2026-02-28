@@ -6,7 +6,7 @@
 
     var BugReporter = {
         currentStep: 0,
-        totalSteps: 6,
+        totalSteps: 7,
         formData: {},
         screenshotUrl: '',
 
@@ -49,7 +49,7 @@
         openModal: function (e) {
             e.preventDefault();
 
-            // Check if setup is complete
+            // Check if setup is complete (settings page visited)
             if (!guilamuBugReporter.isSetupComplete) {
                 if (confirm(guilamuBugReporter.i18n.setupRequired)) {
                     window.location.href = guilamuBugReporter.settingsUrl;
@@ -109,8 +109,8 @@
                 $next.prop('disabled', false);
             }
 
-            // Step 4 (screenshot) is optional
-            if (step === 4) {
+            // Step 5 (screenshot) is optional
+            if (step === 5) {
                 $next.prop('disabled', false);
             }
         },

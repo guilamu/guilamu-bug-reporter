@@ -3,10 +3,10 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Guilamu Bug Reporter 1.0.0\n"
+"Project-Id-Version: Guilamu Bug Reporter 1.3.0\n"
 "Report-Msgid-Bugs-To: https://github.com/guilamu/guilamu-bug-reporter\n"
-"POT-Creation-Date: 2024-01-09T00:00:00+00:00\n"
-"PO-Revision-Date: 2024-01-09T00:00:00+00:00\n"
+"POT-Creation-Date: 2026-02-28T00:00:00+00:00\n"
+"PO-Revision-Date: 2026-02-28T00:00:00+00:00\n"
 "Last-Translator: Guilamu <contact@guilamu.com>\n"
 "Language-Team: English <en@li.org>\n"
 "Language: en_US\n"
@@ -15,6 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. Plugin Name
 msgid "🐛 Report a Bug"
 msgstr "🐛 Report a Bug"
 
@@ -27,11 +28,17 @@ msgstr "Report submitted successfully!"
 msgid "An error occurred. Please try again."
 msgstr "An error occurred. Please try again."
 
+msgid "Please configure Bug Reporter settings first."
+msgstr "Please configure Bug Reporter settings first."
+
 msgid "Privacy & Data Disclosure"
 msgstr "Privacy & Data Disclosure"
 
-msgid "Describe the Issue"
-msgstr "Describe the Issue"
+msgid "What Happened?"
+msgstr "What Happened?"
+
+msgid "Expected Behavior"
+msgstr "Expected Behavior"
 
 msgid "Steps to Reproduce"
 msgstr "Steps to Reproduce"
@@ -63,14 +70,45 @@ msgstr "Guilamu Bug Reporter"
 msgid "Bug Reporter"
 msgstr "Bug Reporter"
 
+#. translators: %s: settings page URL
+msgid "Guilamu Bug Reporter needs configuration. %s to get started."
+msgstr "Guilamu Bug Reporter needs configuration. %s to get started."
+
 msgid "Click here"
 msgstr "Click here"
+
+msgid "Permission denied."
+msgstr "Permission denied."
+
+msgid "API key is required."
+msgstr "API key is required."
+
+msgid "Settings saved successfully."
+msgstr "Settings saved successfully."
+
+msgid "Setup complete. AI responses are disabled."
+msgstr "Setup complete. AI responses are disabled."
 
 msgid "Welcome to Guilamu Bug Reporter!"
 msgstr "Welcome to Guilamu Bug Reporter!"
 
-msgid "To provide instant AI-powered responses to bug reports, you need a POE API key."
-msgstr "To provide instant AI-powered responses to bug reports, you need a POE API key."
+msgid "Bug reports will be submitted as GitHub Issues. You can optionally enable AI-powered instant responses."
+msgstr "Bug reports will be submitted as GitHub Issues. You can optionally enable AI-powered instant responses."
+
+msgid "AI-Powered Responses (Optional)"
+msgstr "AI-Powered Responses (Optional)"
+
+msgid "Enable AI to provide instant troubleshooting suggestions when users submit bug reports. Choose between POE or Google Gemini."
+msgstr "Enable AI to provide instant troubleshooting suggestions when users submit bug reports. Choose between POE or Google Gemini."
+
+msgid "Choose an AI Provider"
+msgstr "Choose an AI Provider"
+
+msgid "Free tier available. Supports Claude, GPT, and more."
+msgstr "Free tier available. Supports Claude, GPT, and more."
+
+msgid "Free tier with generous limits. Fast and capable."
+msgstr "Free tier with generous limits. Fast and capable."
 
 msgid "This takes less than 1 minute and is completely FREE!"
 msgstr "This takes less than 1 minute and is completely FREE!"
@@ -108,11 +146,56 @@ msgstr "Enter API key first..."
 msgid "Auto-detected: Latest Claude-Sonnet"
 msgstr "Auto-detected: Latest Claude-Sonnet"
 
-msgid "Complete Setup →"
-msgstr "Complete Setup →"
+msgid "Google Gemini offers a generous free tier — no credit card required!"
+msgstr "Google Gemini offers a generous free tier — no credit card required!"
+
+msgid "Go to Google AI Studio"
+msgstr "Go to Google AI Studio"
+
+msgid "Sign in with your Google account"
+msgstr "Sign in with your Google account"
+
+msgid "Click \"Get API key\" → \"Create API key\""
+msgstr "Click \"Get API key\" → \"Create API key\""
+
+msgid "Get Your Gemini API Key →"
+msgstr "Get Your Gemini API Key →"
+
+msgid "Gemini API Key"
+msgstr "Gemini API Key"
+
+msgid "Gemini 2.0 Flash is recommended for most use cases."
+msgstr "Gemini 2.0 Flash is recommended for most use cases."
+
+msgid "Complete Setup with AI →"
+msgstr "Complete Setup with AI →"
+
+msgid "Skip AI Setup →"
+msgstr "Skip AI Setup →"
+
+msgid "You can always enable or change AI settings later from this page."
+msgstr "You can always enable or change AI settings later from this page."
 
 msgid "Saving..."
 msgstr "Saving..."
+
+msgid "AI Settings"
+msgstr "AI Settings"
+
+msgid "AI Responses"
+msgstr "AI Responses"
+
+msgid "Enable AI-powered instant responses to bug reports"
+msgstr "Enable AI-powered instant responses to bug reports"
+
+msgid "AI Provider"
+msgstr "AI Provider"
+
+msgid "Get API Key"
+msgstr "Get API Key"
+
+msgid "Model is auto-selected when you update your API key."
+msgstr "Model is auto-selected when you update your API key."
 
 msgid "Registered Plugins"
 msgstr "Registered Plugins"
@@ -132,6 +215,13 @@ msgstr "GitHub Repo"
 msgid "Status"
 msgstr "Status"
 
+#. translators: %s: provider name
+msgid "Enabled (%s)"
+msgstr "Enabled (%s)"
+
+msgid "Disabled"
+msgstr "Disabled"
+
 msgid "POE API"
 msgstr "POE API"
 
@@ -141,6 +231,9 @@ msgstr "Configured"
 msgid "Not configured"
 msgstr "Not configured"
 
+msgid "Gemini API"
+msgstr "Gemini API"
+
 msgid "GitHub API"
 msgstr "GitHub API"
 
@@ -149,6 +242,12 @@ msgstr "Pre-configured"
 
 msgid "GitHub token is bundled with the plugin."
 msgstr "GitHub token is bundled with the plugin."
+
+msgid "Submitting your report..."
+msgstr "Submitting your report..."
+
+msgid "AI Response"
+msgstr "AI Response"
 
 msgid "What we collect:"
 msgstr "What we collect:"
@@ -177,14 +276,37 @@ msgstr "Your email will NOT be published (stored privately for follow-up only)"
 msgid "I understand and wish to proceed"
 msgstr "I understand and wish to proceed"
 
-msgid "What happened vs. what you expected?"
-msgstr "What happened vs. what you expected?"
+msgid "What happened?"
+msgstr "What happened?"
 
-msgid "Describe the issue you encountered and what you expected to happen instead."
-msgstr "Describe the issue you encountered and what you expected to happen instead."
+msgid "Describe the issue you encountered. Be as specific as possible."
+msgstr "Describe the issue you encountered. Be as specific as possible."
+
+msgid "Example: When I click Save, the page refreshes but my changes are not saved. No error message appears."
+msgstr "Example: When I click Save, the page refreshes but my changes are not saved. No error message appears."
+
+msgid "What did you expect to happen?"
+msgstr "What did you expect to happen?"
+
+msgid "Describe the behavior you expected instead."
+msgstr "Describe the behavior you expected instead."
+
+msgid "Example: I expected my changes to be saved and to see a success notification."
+msgstr "Example: I expected my changes to be saved and to see a success notification."
 
 msgid "List the exact steps to recreate this issue."
 msgstr "List the exact steps to recreate this issue."
+
+msgid ""
+"1. Go to Form Settings\n"
+"2. Change the field label\n"
+"3. Click 'Save'\n"
+"4. Page refreshes but changes are lost"
+msgstr ""
+"1. Go to Form Settings\n"
+"2. Change the field label\n"
+"3. Click 'Save'\n"
+"4. Page refreshes but changes are lost"
 
 msgid "How severe is this issue?"
 msgstr "How severe is this issue?"
@@ -213,20 +335,47 @@ msgstr "Max 5MB. JPG, PNG, GIF, or WebP."
 msgid "We'll only use this to follow up if needed. It will NOT appear publicly."
 msgstr "We'll only use this to follow up if needed. It will NOT appear publicly."
 
-msgid "Submitting your report..."
-msgstr "Submitting your report..."
-
-msgid "Report Submitted Successfully!"
-msgstr "Report Submitted Successfully!"
-
-msgid "AI Response"
-msgstr "AI Response"
-
-msgid "View Issue on GitHub →"
-msgstr "View Issue on GitHub →"
+msgid "your@email.com"
+msgstr "your@email.com"
 
 msgid "← Back"
 msgstr "← Back"
 
+msgid "View Issue on GitHub"
+msgstr "View Issue on GitHub"
+
 msgid "Continue →"
 msgstr "Continue →"
+
+msgid "Please fill in all required fields."
+msgstr "Please fill in all required fields."
+
+msgid "Invalid plugin."
+msgstr "Invalid plugin."
+
+msgid "Your bug report has been submitted successfully!"
+msgstr "Your bug report has been submitted successfully!"
+
+msgid "No file uploaded."
+msgstr "No file uploaded."
+
+msgid "Invalid file type. Please upload an image."
+msgstr "Invalid file type. Please upload an image."
+
+msgid "File too large. Maximum size is 5MB."
+msgstr "File too large. Maximum size is 5MB."
+
+#. translators: %d: HTTP status code
+msgid "Gemini API error: %d"
+msgstr "Gemini API error: %d"
+
+#. translators: %d: HTTP status code
+msgid "POE API error: %d"
+msgstr "POE API error: %d"
+
+msgid "GitHub token is not configured."
+msgstr "GitHub token is not configured."
+
+#. translators: %d: HTTP status code
+msgid "GitHub API error: %d"
+msgstr "GitHub API error: %d"

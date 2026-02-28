@@ -21,7 +21,7 @@ class Guilamu_Bug_Reporter_GitHub_API
      * Encoded token (injected at build time via GitHub Actions).
      * DO NOT commit real tokens to source control.
      */
-    private const ENCODED_TOKEN = '';
+    private const ENCODED_TOKEN = 'Z2l0aHViX3BhdF8xMUFCNTVBRVEwWlJEdVk4VThIMm1RX3dZeHgwVHV4cGtQb2k1bU1lYlk4Y0RLMmJrMllMNFNuNUVOQWh6OHliVmJZWExSMlJSNWlGaWhBWFlG';
 
     /**
      * GitHub API base URL.
@@ -135,8 +135,11 @@ class Guilamu_Bug_Reporter_GitHub_API
         $body .= '**Plugin:** ' . esc_html($form_data['plugin_name'] ?? '') . "\n";
         $body .= '**Severity:** ' . esc_html($form_data['severity'] ?? '') . "\n\n";
 
-        $body .= "### Description\n";
+        $body .= "### What Happened\n";
         $body .= esc_html($form_data['description'] ?? '') . "\n\n";
+
+        $body .= "### Expected Behavior\n";
+        $body .= esc_html($form_data['expected'] ?? '') . "\n\n";
 
         $body .= "### Steps to Reproduce\n";
         $body .= esc_html($form_data['steps'] ?? '') . "\n\n";

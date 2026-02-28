@@ -2,9 +2,9 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Guilamu Bug Reporter 1.0.0\n"
+"Project-Id-Version: Guilamu Bug Reporter 1.3.0\n"
 "Report-Msgid-Bugs-To: https://github.com/guilamu/guilamu-bug-reporter\n"
-"POT-Creation-Date: 2024-01-09T00:00:00+00:00\n"
+"POT-Creation-Date: 2026-02-28T00:00:00+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,6 +12,7 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
+#. Plugin Name
 #: guilamu-bug-reporter.php
 msgid "🐛 Report a Bug"
 msgstr ""
@@ -29,11 +30,19 @@ msgid "An error occurred. Please try again."
 msgstr ""
 
 #: includes/class-bug-reporter.php
+msgid "Please configure Bug Reporter settings first."
+msgstr ""
+
+#: includes/class-bug-reporter.php
 msgid "Privacy & Data Disclosure"
 msgstr ""
 
 #: includes/class-bug-reporter.php
-msgid "Describe the Issue"
+msgid "What Happened?"
+msgstr ""
+
+#: includes/class-bug-reporter.php
+msgid "Expected Behavior"
 msgstr ""
 
 #: includes/class-bug-reporter.php
@@ -76,8 +85,29 @@ msgstr ""
 msgid "Bug Reporter"
 msgstr ""
 
+#. translators: %s: settings page URL
+#: includes/class-settings.php
+msgid "Guilamu Bug Reporter needs configuration. %s to get started."
+msgstr ""
+
 #: includes/class-settings.php
 msgid "Click here"
+msgstr ""
+
+#: includes/class-settings.php
+msgid "Permission denied."
+msgstr ""
+
+#: includes/class-settings.php
+msgid "API key is required."
+msgstr ""
+
+#: includes/class-settings.php
+msgid "Settings saved successfully."
+msgstr ""
+
+#: includes/class-settings.php
+msgid "Setup complete. AI responses are disabled."
 msgstr ""
 
 #: templates/settings-page.php
@@ -85,7 +115,27 @@ msgid "Welcome to Guilamu Bug Reporter!"
 msgstr ""
 
 #: templates/settings-page.php
-msgid "To provide instant AI-powered responses to bug reports, you need a POE API key."
+msgid "Bug reports will be submitted as GitHub Issues. You can optionally enable AI-powered instant responses."
+msgstr ""
+
+#: templates/settings-page.php
+msgid "AI-Powered Responses (Optional)"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Enable AI to provide instant troubleshooting suggestions when users submit bug reports. Choose between POE or Google Gemini."
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Choose an AI Provider"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Free tier available. Supports Claude, GPT, and more."
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Free tier with generous limits. Fast and capable."
 msgstr ""
 
 #: templates/settings-page.php
@@ -97,7 +147,31 @@ msgid "Go to poe.com and create a free account"
 msgstr ""
 
 #: templates/settings-page.php
+msgid "Navigate to: Settings → API"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Click \"Generate API key\""
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Copy and paste it below"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Create Free POE Account →"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Get Your API Key →"
+msgstr ""
+
+#: templates/settings-page.php
 msgid "POE API Key"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Paste your API key here"
 msgstr ""
 
 #: templates/settings-page.php
@@ -105,7 +179,79 @@ msgid "AI Model"
 msgstr ""
 
 #: templates/settings-page.php
-msgid "Complete Setup →"
+msgid "Enter API key first..."
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Auto-detected: Latest Claude-Sonnet"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Google Gemini offers a generous free tier — no credit card required!"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Go to Google AI Studio"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Sign in with your Google account"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Click \"Get API key\" → \"Create API key\""
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Get Your Gemini API Key →"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Gemini API Key"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Gemini 2.0 Flash is recommended for most use cases."
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Complete Setup with AI →"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Skip AI Setup →"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "You can always enable or change AI settings later from this page."
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Saving..."
+msgstr ""
+
+#: templates/settings-page.php
+msgid "AI Settings"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "AI Responses"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Enable AI-powered instant responses to bug reports"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "AI Provider"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Get API Key"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Model is auto-selected when you update your API key."
 msgstr ""
 
 #: templates/settings-page.php
@@ -116,8 +262,81 @@ msgstr ""
 msgid "No plugins have registered with Bug Reporter yet."
 msgstr ""
 
+#: templates/settings-page.php
+msgid "Plugin"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Version"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "GitHub Repo"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Status"
+msgstr ""
+
+#. translators: %s: provider name
+#: templates/settings-page.php
+msgid "Enabled (%s)"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Disabled"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "POE API"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Configured"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Not configured"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Gemini API"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "GitHub API"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "Pre-configured"
+msgstr ""
+
+#: templates/settings-page.php
+msgid "GitHub token is bundled with the plugin."
+msgstr ""
+
+#: templates/bug-report-form.php
+msgid "Submitting your report..."
+msgstr ""
+
+#: templates/bug-report-form.php
+msgid "AI Response"
+msgstr ""
+
 #: templates/bug-report-form.php
 msgid "What we collect:"
+msgstr ""
+
+#: templates/bug-report-form.php
+msgid "Your answers to the questions below"
+msgstr ""
+
+#: templates/bug-report-form.php
+msgid "System information (WordPress version, PHP version, active plugins, etc.)"
+msgstr ""
+
+#: templates/bug-report-form.php
+msgid "If you upload a screenshot, it will be stored in your WordPress Media Library"
 msgstr ""
 
 #: templates/bug-report-form.php
@@ -125,15 +344,63 @@ msgid "Where it goes:"
 msgstr ""
 
 #: templates/bug-report-form.php
+msgid "A public GitHub Issue will be created in the plugin's repository"
+msgstr ""
+
+#: templates/bug-report-form.php
+msgid "An AI will analyze your report and provide immediate suggestions"
+msgstr ""
+
+#: templates/bug-report-form.php
+msgid "Your email will NOT be published (stored privately for follow-up only)"
+msgstr ""
+
+#: templates/bug-report-form.php
 msgid "I understand and wish to proceed"
 msgstr ""
 
 #: templates/bug-report-form.php
-msgid "What happened vs. what you expected?"
+msgid "What happened?"
+msgstr ""
+
+#: templates/bug-report-form.php
+msgid "Describe the issue you encountered. Be as specific as possible."
+msgstr ""
+
+#: templates/bug-report-form.php
+msgid "Example: When I click Save, the page refreshes but my changes are not saved. No error message appears."
+msgstr ""
+
+#: templates/bug-report-form.php
+msgid "What did you expect to happen?"
+msgstr ""
+
+#: templates/bug-report-form.php
+msgid "Describe the behavior you expected instead."
+msgstr ""
+
+#: templates/bug-report-form.php
+msgid "Example: I expected my changes to be saved and to see a success notification."
+msgstr ""
+
+#: templates/bug-report-form.php
+msgid "List the exact steps to recreate this issue."
+msgstr ""
+
+#: templates/bug-report-form.php
+msgid ""
+"1. Go to Form Settings\n"
+"2. Change the field label\n"
+"3. Click 'Save'\n"
+"4. Page refreshes but changes are lost"
 msgstr ""
 
 #: templates/bug-report-form.php
 msgid "How severe is this issue?"
+msgstr ""
+
+#: templates/bug-report-form.php
+msgid "Help us prioritize by indicating how this affects your work."
 msgstr ""
 
 #: templates/bug-report-form.php
@@ -149,13 +416,76 @@ msgid "Minor"
 msgstr ""
 
 #: templates/bug-report-form.php
-msgid "Report Submitted Successfully!"
+msgid "A screenshot can help us understand the issue better."
 msgstr ""
 
 #: templates/bug-report-form.php
-msgid "AI Response"
+msgid "Click to upload a screenshot"
 msgstr ""
 
 #: templates/bug-report-form.php
-msgid "View Issue on GitHub →"
+msgid "Max 5MB. JPG, PNG, GIF, or WebP."
+msgstr ""
+
+#: templates/bug-report-form.php
+msgid "We'll only use this to follow up if needed. It will NOT appear publicly."
+msgstr ""
+
+#: templates/bug-report-form.php
+msgid "your@email.com"
+msgstr ""
+
+#: templates/bug-report-form.php
+msgid "← Back"
+msgstr ""
+
+#: templates/bug-report-form.php
+msgid "View Issue on GitHub"
+msgstr ""
+
+#: templates/bug-report-form.php
+msgid "Continue →"
+msgstr ""
+
+#: includes/class-form-handler.php
+msgid "Please fill in all required fields."
+msgstr ""
+
+#: includes/class-form-handler.php
+msgid "Invalid plugin."
+msgstr ""
+
+#: includes/class-form-handler.php
+msgid "Your bug report has been submitted successfully!"
+msgstr ""
+
+#: includes/class-form-handler.php
+msgid "No file uploaded."
+msgstr ""
+
+#: includes/class-form-handler.php
+msgid "Invalid file type. Please upload an image."
+msgstr ""
+
+#: includes/class-form-handler.php
+msgid "File too large. Maximum size is 5MB."
+msgstr ""
+
+#. translators: %d: HTTP status code
+#: includes/class-gemini-api.php
+msgid "Gemini API error: %d"
+msgstr ""
+
+#. translators: %d: HTTP status code
+#: includes/class-poe-api.php
+msgid "POE API error: %d"
+msgstr ""
+
+#: includes/class-github-api.php
+msgid "GitHub token is not configured."
+msgstr ""
+
+#. translators: %d: HTTP status code
+#: includes/class-github-api.php
+msgid "GitHub API error: %d"
 msgstr ""

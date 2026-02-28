@@ -84,9 +84,11 @@ if (!defined('ABSPATH')) {
                                 <li>
                                     <?php esc_html_e('A public GitHub Issue will be created in the plugin\'s repository', 'guilamu-bug-reporter'); ?>
                                 </li>
+                                <?php if (Guilamu_Bug_Reporter_Settings::is_ai_enabled()): ?>
                                 <li>
                                     <?php esc_html_e('An AI will analyze your report and provide immediate suggestions', 'guilamu-bug-reporter'); ?>
                                 </li>
+                                <?php endif; ?>
                                 <li>
                                     <?php esc_html_e('Your email will NOT be published (stored privately for follow-up only)', 'guilamu-bug-reporter'); ?>
                                 </li>
@@ -101,23 +103,38 @@ if (!defined('ABSPATH')) {
                         </div>
                     </div>
 
-                    <!-- Step 1: Description -->
+                    <!-- Step 1: What happened? -->
                     <div class="guilamu-bug-reporter-step" data-step="1">
                         <h3>
-                            <?php esc_html_e('What happened vs. what you expected?', 'guilamu-bug-reporter'); ?>
+                            <?php esc_html_e('What happened?', 'guilamu-bug-reporter'); ?>
                         </h3>
                         <p>
-                            <?php esc_html_e('Describe the issue you encountered and what you expected to happen instead.', 'guilamu-bug-reporter'); ?>
+                            <?php esc_html_e('Describe the issue you encountered. Be as specific as possible.', 'guilamu-bug-reporter'); ?>
                         </p>
 
                         <div class="guilamu-bug-reporter-field">
-                            <textarea name="description" rows="5" required
-                                placeholder="<?php esc_attr_e('Example: When I try to save the form, the page refreshes but the changes are not saved. I expected my changes to be saved and see a success message.', 'guilamu-bug-reporter'); ?>"></textarea>
+                            <textarea name="description" rows="4" required
+                                placeholder="<?php esc_attr_e('Example: When I click Save, the page refreshes but my changes are not saved. No error message appears.', 'guilamu-bug-reporter'); ?>"></textarea>
                         </div>
                     </div>
 
-                    <!-- Step 2: Steps to Reproduce -->
+                    <!-- Step 2: What did you expect? -->
                     <div class="guilamu-bug-reporter-step" data-step="2">
+                        <h3>
+                            <?php esc_html_e('What did you expect to happen?', 'guilamu-bug-reporter'); ?>
+                        </h3>
+                        <p>
+                            <?php esc_html_e('Describe the behavior you expected instead.', 'guilamu-bug-reporter'); ?>
+                        </p>
+
+                        <div class="guilamu-bug-reporter-field">
+                            <textarea name="expected" rows="3" required
+                                placeholder="<?php esc_attr_e('Example: I expected my changes to be saved and to see a success notification.', 'guilamu-bug-reporter'); ?>"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Steps to Reproduce -->
+                    <div class="guilamu-bug-reporter-step" data-step="3">
                         <h3>
                             <?php esc_html_e('Steps to Reproduce', 'guilamu-bug-reporter'); ?>
                         </h3>
@@ -131,8 +148,8 @@ if (!defined('ABSPATH')) {
                         </div>
                     </div>
 
-                    <!-- Step 3: Severity -->
-                    <div class="guilamu-bug-reporter-step" data-step="3">
+                    <!-- Step 4: Severity -->
+                    <div class="guilamu-bug-reporter-step" data-step="4">
                         <h3>
                             <?php esc_html_e('How severe is this issue?', 'guilamu-bug-reporter'); ?>
                         </h3>
@@ -162,8 +179,8 @@ if (!defined('ABSPATH')) {
                         </div>
                     </div>
 
-                    <!-- Step 4: Screenshot -->
-                    <div class="guilamu-bug-reporter-step" data-step="4">
+                    <!-- Step 5: Screenshot -->
+                    <div class="guilamu-bug-reporter-step" data-step="5">
                         <h3>
                             <?php esc_html_e('Screenshot (Optional)', 'guilamu-bug-reporter'); ?>
                         </h3>
@@ -182,8 +199,8 @@ if (!defined('ABSPATH')) {
                         <input type="file" id="guilamu-screenshot-input" accept="image/*" style="display: none;">
                     </div>
 
-                    <!-- Step 5: Email -->
-                    <div class="guilamu-bug-reporter-step" data-step="5">
+                    <!-- Step 6: Email -->
+                    <div class="guilamu-bug-reporter-step" data-step="6">
                         <h3>
                             <?php esc_html_e('Contact Email', 'guilamu-bug-reporter'); ?>
                         </h3>

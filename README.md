@@ -1,12 +1,17 @@
 # Guilamu Bug Reporter
 
-Unified bug reporting for WordPress plugins with AI-powered instant responses and automatic GitHub issue creation.
+Unified bug reporting for WordPress plugins with optional AI-powered instant responses and automatic GitHub issue creation.
 
-## AI-Powered Bug Reporting
-- Instant AI responses to help users troubleshoot issues
+## Bug Reporting Made Easy
+- Conversational multi-step form collecting all relevant debugging info
 - Collects full environment info (WordPress, PHP, plugins, theme)
 - Automatically creates detailed GitHub issues
 - Screenshot upload to WordPress Media Library
+
+## Optional AI-Powered Responses
+- Instant AI responses to help users troubleshoot issues
+- Choose between **POE** or **Google Gemini** as your AI provider
+- AI is fully optional — works great without it too
 
 ## Easy Integration
 - Register any plugin with a single function call
@@ -15,7 +20,7 @@ Unified bug reporting for WordPress plugins with AI-powered instant responses an
 - Supports multiple plugins simultaneously
 
 ## Key Features
-- **AI-Powered:** Get instant helpful responses using POE API (Claude-Sonnet)
+- **AI-Powered (Optional):** Get instant helpful responses using POE API or Google Gemini
 - **Complete System Info:** Automatically captures WordPress, PHP, MySQL, plugins, and theme info
 - **Multilingual:** Works with content in any language
 - **Translation-Ready:** All strings are internationalized (French included)
@@ -23,15 +28,17 @@ Unified bug reporting for WordPress plugins with AI-powered instant responses an
 - **GitHub Updates:** Automatic updates from GitHub releases
 
 ## Requirements
-- POE API key (free) for AI-powered responses – [Get your key](https://poe.com/api_key)
 - WordPress 5.8 or higher
 - PHP 7.4 or higher
+- (Optional) POE API key for AI responses – [Get your key](https://poe.com/api_key)
+- (Optional) Google Gemini API key (free) for AI responses – [Get your key](https://aistudio.google.com/apikey)
 
 ## Installation
 1. Upload the `guilamu-bug-reporter` folder to `/wp-content/plugins/`
 2. Activate the plugin through the **Plugins** menu in WordPress
-3. Go to **Settings → Bug Reporter** and enter your POE API key
-4. Register your plugins using the API (see Integration section)
+3. Go to **Settings → Bug Reporter** to complete setup
+4. Optionally configure an AI provider (POE or Gemini) for instant responses
+5. Register your plugins using the API (see Integration section)
 
 ## Integration
 
@@ -67,11 +74,15 @@ add_filter( 'plugin_row_meta', function( $links, $file ) {
 
 ## FAQ
 
-### How do I get a POE API key?
-Go to [poe.com](https://poe.com), create a free account, then navigate to **Settings → API** and click "Generate API key". It takes less than 1 minute and is completely free.
+### Do I need an AI API key to use this plugin?
+No! AI-powered responses are completely optional. The plugin works perfectly without AI — it will still collect all debugging information and create GitHub issues. You can enable AI later from the settings page.
+
+### Which AI provider should I choose?
+- **POE:** Offers access to Claude, GPT, and many other models. Create an account at [poe.com](https://poe.com).
+- **Google Gemini:** Fast and capable with a generous free tier. Get a key at [Google AI Studio](https://aistudio.google.com/apikey).
 
 ### Do I need to configure GitHub?
-No, the GitHub token is bundled with the plugin by the developer. You only need to configure your POE API key for AI-powered responses.
+No, the GitHub token is bundled with the plugin by the developer. You only need to optionally configure an AI provider for instant responses.
 
 ### What information is collected in bug reports?
 The plugin collects: WordPress version, PHP version, MySQL version, active theme, active plugins, Gravity Forms version (if installed), server info, and user-provided bug description with optional screenshot.
@@ -92,9 +103,10 @@ Yes! Any plugin can register with Bug Reporter using the `Guilamu_Bug_Reporter::
 ├── includes
 │   ├── class-bug-reporter.php    # Core registration and modal
 │   ├── class-form-handler.php    # AJAX form submission
+│   ├── class-gemini-api.php      # Google Gemini AI integration
 │   ├── class-github-api.php      # GitHub issue creation
 │   ├── class-github-updater.php  # GitHub auto-updates
-│   ├── class-poe-api.php         # AI response integration
+│   ├── class-poe-api.php         # POE AI integration
 │   ├── class-readme-extractor.php # README context for AI
 │   ├── class-settings.php        # Settings page and setup wizard
 │   └── class-system-info.php     # Environment info collector
@@ -108,6 +120,16 @@ Yes! Any plugin can register with Bug Reporter using the `Guilamu_Bug_Reporter::
 ```
 
 ## Changelog
+
+### 1.3.0
+- **New:** Google Gemini API as an alternative AI provider
+- **New:** AI is now fully optional — plugin works without any AI configuration
+- **New:** Setup wizard allows skipping AI setup entirely
+- **New:** Settings page with AI enable/disable toggle and provider selection (POE or Gemini)
+- **Improved:** Bug report form now separates "What happened?" and "What did you expect?" into distinct steps
+- **Improved:** GitHub issues include separate "What Happened" and "Expected Behavior" sections
+- **Improved:** Privacy disclosure conditionally mentions AI only when enabled
+- **Improved:** Setup notice no longer blocks bug reporting when AI is not configured
 
 ### 1.2.1
 - **Security:** Upgraded to fine-grained GitHub token restricted to guilamu repositories only

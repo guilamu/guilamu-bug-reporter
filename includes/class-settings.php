@@ -18,6 +18,16 @@ class Guilamu_Bug_Reporter_Settings
 {
 
     /**
+     * Option name for AI enabled flag.
+     */
+    private const OPTION_AI_ENABLED = 'guilamu_bug_reporter_ai_enabled';
+
+    /**
+     * Option name for AI provider (poe or gemini).
+     */
+    private const OPTION_AI_PROVIDER = 'guilamu_bug_reporter_ai_provider';
+
+    /**
      * Option name for POE API key.
      */
     private const OPTION_POE_KEY = 'guilamu_bug_reporter_poe_key';
@@ -26,6 +36,16 @@ class Guilamu_Bug_Reporter_Settings
      * Option name for POE model.
      */
     private const OPTION_POE_MODEL = 'guilamu_bug_reporter_poe_model';
+
+    /**
+     * Option name for Gemini API key.
+     */
+    private const OPTION_GEMINI_KEY = 'guilamu_bug_reporter_gemini_key';
+
+    /**
+     * Option name for Gemini model.
+     */
+    private const OPTION_GEMINI_MODEL = 'guilamu_bug_reporter_gemini_model';
 
     /**
      * Option name for setup complete flag.
@@ -40,8 +60,10 @@ class Guilamu_Bug_Reporter_Settings
         add_action('admin_menu', array(self::class, 'add_menu_page'));
         add_action('admin_init', array(self::class, 'register_settings'));
         add_action('admin_notices', array(self::class, 'setup_notice'));
-        add_action('wp_ajax_guilamu_fetch_poe_models', array(self::class, 'ajax_fetch_models'));
-        add_action('wp_ajax_guilamu_save_poe_key', array(self::class, 'ajax_save_poe_key'));
+        add_action('wp_ajax_guilamu_fetch_poe_models', array(self::class, 'ajax_fetch_poe_models'));
+        add_action('wp_ajax_guilamu_validate_gemini_key', array(self::class, 'ajax_validate_gemini_key'));
+        add_action('wp_ajax_guilamu_save_ai_settings', array(self::class, 'ajax_save_ai_settings'));
+        add_action('wp_ajax_guilamu_skip_ai_setup', array(self::class, 'ajax_skip_ai_setup'));
     }
 
     /**
@@ -63,12 +85,32 @@ class Guilamu_Bug_Reporter_Settings
      */
     public static function register_settings(): void
     {
+        register_setting('guilamu_bug_reporter', self::OPTION_AI_ENABLED, array(
+            'type' => 'string',
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+
+        register_setting('guilamu_bug_reporter', self::OPTION_AI_PROVIDER, array(
+            'type' => 'string',
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+
         register_setting('guilamu_bug_reporter', self::OPTION_POE_KEY, array(
             'type' => 'string',
             'sanitize_callback' => 'sanitize_text_field',
         ));
 
         register_setting('guilamu_bug_reporter', self::OPTION_POE_MODEL, array(
+            'type' => 'string',
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+
+        register_setting('guilamu_bug_reporter', self::OPTION_GEMINI_KEY, array(
+            'type' => 'string',
+            'sanitize_callback' => 'sanitize_text_field',
+        ));
+
+        register_setting('guilamu_bug_reporter', self::OPTION_GEMINI_MODEL, array(
             'type' => 'string',
             'sanitize_callback' => 'sanitize_text_field',
         ));
@@ -94,7 +136,7 @@ class Guilamu_Bug_Reporter_Settings
                 <?php
                 printf(
                     /* translators: %s: settings page URL */
-                    esc_html__('Guilamu Bug Reporter needs configuration. %s to get started (takes less than 1 minute, completely free!)', 'guilamu-bug-reporter'),
+                    esc_html__('Guilamu Bug Reporter needs configuration. %s to get started.', 'guilamu-bug-reporter'),
                     '<a href="' . esc_url(admin_url('options-general.php?page=guilamu-bug-reporter')) . '">' . esc_html__('Click here', 'guilamu-bug-reporter') . '</a>'
                 );
                 ?>
@@ -109,6 +151,26 @@ class Guilamu_Bug_Reporter_Settings
     public static function render_settings_page(): void
     {
         include GUILAMU_BUG_REPORTER_PATH . 'templates/settings-page.php';
+    }
+
+    /**
+     * Check if AI is enabled.
+     *
+     * @return bool
+     */
+    public static function is_ai_enabled(): bool
+    {
+        return '1' === get_option(self::OPTION_AI_ENABLED, '');
+    }
+
+    /**
+     * Get selected AI provider.
+     *
+     * @return string 'poe' or 'gemini'.
+     */
+    public static function get_ai_provider(): string
+    {
+        return (string) get_option(self::OPTION_AI_PROVIDER, 'poe');
     }
 
     /**
@@ -132,6 +194,26 @@ class Guilamu_Bug_Reporter_Settings
     }
 
     /**
+     * Get Gemini API key.
+     *
+     * @return string
+     */
+    public static function get_gemini_key(): string
+    {
+        return (string) get_option(self::OPTION_GEMINI_KEY, '');
+    }
+
+    /**
+     * Get Gemini model.
+     *
+     * @return string
+     */
+    public static function get_gemini_model(): string
+    {
+        return (string) get_option(self::OPTION_GEMINI_MODEL, 'gemini-2.0-flash');
+    }
+
+    /**
      * Check if setup is complete.
      *
      * @return bool
@@ -144,7 +226,7 @@ class Guilamu_Bug_Reporter_Settings
     /**
      * AJAX handler to fetch POE models.
      */
-    public static function ajax_fetch_models(): void
+    public static function ajax_fetch_poe_models(): void
     {
         check_ajax_referer('guilamu_bug_reporter', 'nonce');
 
@@ -173,9 +255,9 @@ class Guilamu_Bug_Reporter_Settings
     }
 
     /**
-     * AJAX handler to save POE API key.
+     * AJAX handler to validate Gemini API key.
      */
-    public static function ajax_save_poe_key(): void
+    public static function ajax_validate_gemini_key(): void
     {
         check_ajax_referer('guilamu_bug_reporter', 'nonce');
 
@@ -184,13 +266,74 @@ class Guilamu_Bug_Reporter_Settings
         }
 
         $api_key = isset($_POST['api_key']) ? sanitize_text_field(wp_unslash($_POST['api_key'])) : '';
-        $model = isset($_POST['model']) ? sanitize_text_field(wp_unslash($_POST['model'])) : '';
 
-        update_option(self::OPTION_POE_KEY, $api_key);
-        update_option(self::OPTION_POE_MODEL, $model);
+        if (empty($api_key)) {
+            wp_send_json_error(__('API key is required.', 'guilamu-bug-reporter'));
+        }
+
+        $result = Guilamu_Bug_Reporter_Gemini_API::validate_key($api_key);
+
+        if (is_wp_error($result)) {
+            wp_send_json_error($result->get_error_message());
+        }
+
+        $models = Guilamu_Bug_Reporter_Gemini_API::get_models();
+
+        wp_send_json_success(array(
+            'models' => $models,
+            'default_model' => 'gemini-2.0-flash',
+        ));
+    }
+
+    /**
+     * AJAX handler to save AI settings (used by both wizard and settings page).
+     */
+    public static function ajax_save_ai_settings(): void
+    {
+        check_ajax_referer('guilamu_bug_reporter', 'nonce');
+
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error(__('Permission denied.', 'guilamu-bug-reporter'));
+        }
+
+        $ai_enabled = isset($_POST['ai_enabled']) ? sanitize_text_field(wp_unslash($_POST['ai_enabled'])) : '0';
+        $provider = isset($_POST['ai_provider']) ? sanitize_text_field(wp_unslash($_POST['ai_provider'])) : 'poe';
+
+        update_option(self::OPTION_AI_ENABLED, $ai_enabled);
+        update_option(self::OPTION_AI_PROVIDER, $provider);
+
+        if ('poe' === $provider) {
+            $api_key = isset($_POST['poe_api_key']) ? sanitize_text_field(wp_unslash($_POST['poe_api_key'])) : '';
+            $model = isset($_POST['poe_model']) ? sanitize_text_field(wp_unslash($_POST['poe_model'])) : '';
+            update_option(self::OPTION_POE_KEY, $api_key);
+            update_option(self::OPTION_POE_MODEL, $model);
+        } elseif ('gemini' === $provider) {
+            $api_key = isset($_POST['gemini_api_key']) ? sanitize_text_field(wp_unslash($_POST['gemini_api_key'])) : '';
+            $model = isset($_POST['gemini_model']) ? sanitize_text_field(wp_unslash($_POST['gemini_model'])) : 'gemini-2.0-flash';
+            update_option(self::OPTION_GEMINI_KEY, $api_key);
+            update_option(self::OPTION_GEMINI_MODEL, $model);
+        }
+
         update_option(self::OPTION_SETUP_COMPLETE, true);
 
         wp_send_json_success(__('Settings saved successfully.', 'guilamu-bug-reporter'));
+    }
+
+    /**
+     * AJAX handler to skip AI setup.
+     */
+    public static function ajax_skip_ai_setup(): void
+    {
+        check_ajax_referer('guilamu_bug_reporter', 'nonce');
+
+        if (!current_user_can('manage_options')) {
+            wp_send_json_error(__('Permission denied.', 'guilamu-bug-reporter'));
+        }
+
+        update_option(self::OPTION_AI_ENABLED, '0');
+        update_option(self::OPTION_SETUP_COMPLETE, true);
+
+        wp_send_json_success(__('Setup complete. AI responses are disabled.', 'guilamu-bug-reporter'));
     }
 
     /**

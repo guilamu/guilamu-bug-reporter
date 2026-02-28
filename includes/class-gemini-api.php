@@ -1,8 +1,9 @@
 <?php
 /**
- * POE API Class
+ * Gemini API Class
  *
- * Handles AI responses via POE API.
+ * Handles AI responses via Google Gemini API (OpenAI-compatible endpoint).
+ * Adapted from DistillPress Gemini API Service.
  *
  * @package Guilamu_Bug_Reporter
  */
@@ -12,35 +13,63 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * Class Guilamu_Bug_Reporter_POE_API
+ * Class Guilamu_Bug_Reporter_Gemini_API
  */
-class Guilamu_Bug_Reporter_POE_API
+class Guilamu_Bug_Reporter_Gemini_API
 {
 
     /**
-     * POE API base URL.
+     * Gemini API base URL (OpenAI-compatible).
      */
-    private const API_URL = 'https://api.poe.com';
+    private const API_URL = 'https://generativelanguage.googleapis.com/v1beta/openai';
 
     /**
-     * Get available models from POE API.
-     *
-     * @param string $api_key POE API key.
-     * @return array|WP_Error Array of models or error.
+     * Available Gemini models.
      */
-    public static function get_models(string $api_key)
+    private const MODELS = array(
+        array(
+            'id'   => 'gemini-2.0-flash',
+            'name' => 'Gemini 2.0 Flash (fast, recommended)',
+        ),
+        array(
+            'id'   => 'gemini-2.0-flash-lite',
+            'name' => 'Gemini 2.0 Flash Lite (fastest, cheapest)',
+        ),
+        array(
+            'id'   => 'gemini-1.5-pro',
+            'name' => 'Gemini 1.5 Pro (most capable)',
+        ),
+    );
+
+    /**
+     * Get available Gemini models.
+     *
+     * @return array Array of models with id and name keys.
+     */
+    public static function get_models(): array
+    {
+        return self::MODELS;
+    }
+
+    /**
+     * Validate a Gemini API key by making a lightweight request.
+     *
+     * @param string $api_key Gemini API key.
+     * @return bool|WP_Error True if valid, WP_Error otherwise.
+     */
+    public static function validate_key(string $api_key)
     {
         if (empty($api_key)) {
             return new WP_Error('missing_key', __('API key is required.', 'guilamu-bug-reporter'));
         }
 
         $response = wp_remote_get(
-            self::API_URL . '/v1/models',
+            self::API_URL . '/models',
             array(
                 'headers' => array(
                     'Authorization' => 'Bearer ' . $api_key,
                 ),
-                'timeout' => 30,
+                'timeout' => 15,
             )
         );
 
@@ -54,32 +83,19 @@ class Guilamu_Bug_Reporter_POE_API
                 'api_error',
                 sprintf(
                     /* translators: %d: HTTP status code */
-                    __('POE API error: %d', 'guilamu-bug-reporter'),
+                    __('Gemini API error: %d', 'guilamu-bug-reporter'),
                     $status_code
                 )
             );
         }
 
-        $body = json_decode(wp_remote_retrieve_body($response), true);
-
-        $models = array();
-        foreach ($body['data'] ?? array() as $model) {
-            $models[] = array(
-                'id' => $model['id'] ?? '',
-                'name' => $model['metadata']['display_name'] ?? $model['id'] ?? '',
-            );
-        }
-
-        // Sort alphabetically
-        usort($models, fn($a, $b) => strcasecmp($a['name'], $b['name']));
-
-        return $models;
+        return true;
     }
 
     /**
      * Get AI response for a bug report.
      *
-     * @param string $api_key        POE API key.
+     * @param string $api_key        Gemini API key.
      * @param string $model          Model ID.
      * @param array  $form_data      Bug report form data.
      * @param string $system_info    System info as formatted string.
@@ -140,22 +156,23 @@ ENVIRONMENT INFORMATION:
         );
 
         $response = wp_remote_post(
-            self::API_URL . '/v1/chat/completions',
+            self::API_URL . '/chat/completions',
             array(
                 'headers' => array(
                     'Authorization' => 'Bearer ' . $api_key,
-                    'Content-Type' => 'application/json',
+                    'Content-Type'  => 'application/json',
                 ),
                 'body' => wp_json_encode(array(
-                    'model' => $model,
-                    'messages' => array(
+                    'model'       => $model,
+                    'messages'    => array(
                         array('role' => 'system', 'content' => $system_prompt),
                         array('role' => 'user', 'content' => $user_prompt),
                     ),
                     'temperature' => 0.7,
-                    'max_tokens' => 500,
+                    'max_tokens'  => 500,
                 )),
-                'timeout' => 60,
+                'timeout'   => 60,
+                'sslverify' => true,
             )
         );
 
@@ -165,6 +182,9 @@ ENVIRONMENT INFORMATION:
 
         $status_code = wp_remote_retrieve_response_code($response);
         if (200 !== $status_code) {
+            if (defined('WP_DEBUG') && WP_DEBUG) {
+                error_log('Guilamu Bug Reporter Gemini API Error: ' . wp_remote_retrieve_body($response));
+            }
             return null;
         }
 

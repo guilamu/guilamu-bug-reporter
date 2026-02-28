@@ -362,3 +362,50 @@
     align-items: center;
     gap: 6px;
 }
+
+/* Provider Cards (Wizard) */
+.guilamu-provider-cards {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.guilamu-provider-card {
+    display: flex;
+    align-items: flex-start;
+    padding: 16px;
+    border: 2px solid #dcdcde;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex: 1;
+}
+
+.guilamu-provider-card:hover {
+    border-color: #2271b1;
+}
+
+.guilamu-provider-card input[type="radio"] {
+    margin-top: 2px;
+    margin-right: 10px;
+}
+
+.guilamu-provider-card-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.guilamu-provider-card-inner strong {
+    font-size: 14px;
+}
+
+.guilamu-provider-card-inner span {
+    font-size: 12px;
+    color: #646970;
+}
+
+.guilamu-provider-card:has(input:checked) {
+    border-color: #2271b1;
+    background: #f0f6fc;
+}

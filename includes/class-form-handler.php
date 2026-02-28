@@ -42,6 +42,7 @@ class Guilamu_Bug_Reporter_Form_Handler
             'plugin_slug' => isset($_POST['plugin_slug']) ? sanitize_text_field(wp_unslash($_POST['plugin_slug'])) : '',
             'plugin_name' => isset($_POST['plugin_name']) ? sanitize_text_field(wp_unslash($_POST['plugin_name'])) : '',
             'description' => isset($_POST['description']) ? sanitize_textarea_field(wp_unslash($_POST['description'])) : '',
+            'expected' => isset($_POST['expected']) ? sanitize_textarea_field(wp_unslash($_POST['expected'])) : '',
             'steps' => isset($_POST['steps']) ? sanitize_textarea_field(wp_unslash($_POST['steps'])) : '',
             'severity' => isset($_POST['severity']) ? sanitize_text_field(wp_unslash($_POST['severity'])) : '',
             'email' => isset($_POST['email']) ? sanitize_email(wp_unslash($_POST['email'])) : '',
@@ -69,13 +70,39 @@ class Guilamu_Bug_Reporter_Form_Handler
         // Extract relevant README context for AI
         $readme_context = Guilamu_Bug_Reporter_Readme_Extractor::extract_context($form_data['plugin_slug']);
 
-        // Get AI response (if configured)
+        // Get AI response (if enabled and configured)
         $ai_response = '';
-        $poe_key = Guilamu_Bug_Reporter_Settings::get_poe_key();
-        $poe_model = Guilamu_Bug_Reporter_Settings::get_poe_model();
+        if (Guilamu_Bug_Reporter_Settings::is_ai_enabled()) {
+            $provider = Guilamu_Bug_Reporter_Settings::get_ai_provider();
 
-        if ($poe_key && $poe_model) {
-            $ai_response = Guilamu_Bug_Reporter_POE_API::get_bug_response($poe_key, $poe_model, $form_data, $system_info_text, $readme_context);
+            if ('gemini' === $provider) {
+                $gemini_key = Guilamu_Bug_Reporter_Settings::get_gemini_key();
+                $gemini_model = Guilamu_Bug_Reporter_Settings::get_gemini_model();
+
+                if ($gemini_key && $gemini_model) {
+                    $ai_response = Guilamu_Bug_Reporter_Gemini_API::get_bug_response(
+                        $gemini_key,
+                        $gemini_model,
+                        $form_data,
+                        $system_info_text,
+                        $readme_context
+                    );
+                }
+            } else {
+                // Default: POE
+                $poe_key = Guilamu_Bug_Reporter_Settings::get_poe_key();
+                $poe_model = Guilamu_Bug_Reporter_Settings::get_poe_model();
+
+                if ($poe_key && $poe_model) {
+                    $ai_response = Guilamu_Bug_Reporter_POE_API::get_bug_response(
+                        $poe_key,
+                        $poe_model,
+                        $form_data,
+                        $system_info_text,
+                        $readme_context
+                    );
+                }
+            }
         }
 
         // Create GitHub issue
