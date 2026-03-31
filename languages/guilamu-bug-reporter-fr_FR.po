@@ -3,10 +3,10 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Guilamu Bug Reporter 1.3.0\n"
+"Project-Id-Version: Guilamu Bug Reporter 1.3.1\n"
 "Report-Msgid-Bugs-To: https://github.com/guilamu/guilamu-bug-reporter\n"
 "POT-Creation-Date: 2026-02-28T00:00:00+00:00\n"
-"PO-Revision-Date: 2026-02-28 20:51+0100\n"
+"PO-Revision-Date: 2026-03-31 13:24+0200\n"
 "Last-Translator: Guilamu <contact@guilamu.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr_FR\n"
@@ -380,3 +380,12 @@ msgstr "Le token GitHub n'est pas configuré."
 #. translators: %d: HTTP status code
 msgid "GitHub API error: %d"
 msgstr "Erreur API GitHub : %d"
+
+msgid "More information about Guilamu Bug Reporter"
+msgstr "Plus d'informations sur Guilamu Bug Reporter"
+
+msgid "View details"
+msgstr "Voir les détails"
+
+msgid "Unable to rename the update folder. Please retry or update manually."
+msgstr "Impossible de renommer le dossier de mise à jour. Veuillez réessayer ou mettre à jour manuellement."

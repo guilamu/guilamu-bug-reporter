@@ -121,6 +121,13 @@ Yes! Any plugin can register with Bug Reporter using the `Guilamu_Bug_Reporter::
 
 ## Changelog
 
+### 1.3.1
+- **Improved:** Rewritten GitHub updater with full README.md parsing for "View details" modal
+- **New:** "View details" thickbox link in plugin row meta
+- **New:** Parsedown.php for Markdown-to-HTML conversion in plugin info popup
+- **Improved:** Plugin info popup now shows Description, Installation, FAQ, and Changelog tabs from README.md
+- **Improved:** Update check returns complete object with id, slug, plugin fields for WP compatibility
+
 ### 1.3.0
 - **New:** Google Gemini API as an alternative AI provider
 - **New:** AI is now fully optional — plugin works without any AI configuration
